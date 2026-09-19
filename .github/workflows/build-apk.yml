@@ -86,27 +86,55 @@ jobs:
           org.gradle.jvmargs=-Xmx4g -Dfile.encoding=UTF-8
           EOF
 
-      - name: Assemble Tsuyu debug APK
-        working-directory: yoru-android
-        run: gradle --no-daemon --stacktrace :app:assembleTsuyuDebug
-
-      - name: Copy APK into handoff
+      - name: Create temporary release signing key
         shell: bash
         run: |
+          set -euo pipefail
+          mkdir -p yoru-android/owner-signing
+          SIGNING_PASSWORD="$(openssl rand -hex 32)"
+          printf 'TSUYU_SIGNING_PASSWORD=%s\n' "$SIGNING_PASSWORD" >> "$GITHUB_ENV"
+          keytool -genkeypair -noprompt \
+            -keystore yoru-android/owner-signing/yoru-release.p12 \
+            -storetype PKCS12 \
+            -storepass "$SIGNING_PASSWORD" \
+            -keypass "$SIGNING_PASSWORD" \
+            -alias tsuyu-actions \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 365 \
+            -dname "CN=Tsuyu Actions, OU=Build, O=Tsuyu, L=CI, ST=CI, C=DE"
+          cat > yoru-android/owner-signing/signing.properties <<EOF
+          storePassword=$SIGNING_PASSWORD
+          keyAlias=tsuyu-actions
+          keyPassword=$SIGNING_PASSWORD
+          EOF
+
+      - name: Assemble Tsuyu release APK
+        working-directory: yoru-android
+        run: gradle --no-daemon --stacktrace :app:assembleTsuyuRelease
+
+      - name: Copy and verify release APK
+        shell: bash
+        run: |
+          set -euo pipefail
           mkdir -p handoff
-          APK="$(find yoru-android/app/build/outputs/apk/tsuyu/debug -type f -name '*.apk' -print -quit)"
+          APK="$(find yoru-android/app/build/outputs/apk/tsuyu/release -type f -name '*.apk' -print -quit)"
           test -n "$APK"
-          cp "$APK" handoff/tsuyu-debug.apk
+          rm -f handoff/tsuyu-debug.apk handoff/tsuyu-release.apk
+          cp "$APK" handoff/tsuyu-release.apk
+          unzip -t handoff/tsuyu-release.apk >/dev/null
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose handoff/tsuyu-release.apk
+          sha256sum handoff/tsuyu-release.apk
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add handoff/tsuyu-debug.apk
-          git commit -m "Handoff APK [skip ci]"
+          git add -A handoff
+          git commit -m "Handoff release APK [skip ci]"
           git push origin "HEAD:${GITHUB_REF_NAME}"
 
-      - name: Upload APK for handoff
+      - name: Upload release APK for handoff
         uses: actions/upload-artifact@v4
         with:
-          name: tsuyu-apk
-          path: handoff/tsuyu-debug.apk
+          name: tsuyu-release-apk
+          path: handoff/tsuyu-release.apk
           if-no-files-found: error
           retention-days: 14
