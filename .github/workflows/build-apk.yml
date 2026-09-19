@@ -1,0 +1,88 @@
+name: Build APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'arena/**'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android build tools
+        shell: bash
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0" "cmake;3.22.1" "ndk;27.2.12479018"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+
+      - name: Prepare the uploaded Android source
+        shell: bash
+        run: |
+          rm -rf yoru-android
+          unzip -q "Tsuyu-1.20-source (2).zip"
+          cat > yoru-android/settings.gradle <<'EOF'
+          import org.gradle.api.initialization.resolve.RepositoriesMode
+
+          pluginManagement {
+              repositories {
+                  google()
+                  mavenCentral()
+                  gradlePluginPortal()
+              }
+          }
+
+          dependencyResolutionManagement {
+              repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+              repositories {
+                  google()
+                  mavenCentral()
+              }
+          }
+
+          rootProject.name = 'yoru-android'
+          include ':app'
+          EOF
+          cat > yoru-android/build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application' version '8.13.0' apply false
+          }
+          EOF
+          cat > yoru-android/gradle.properties <<'EOF'
+          android.useAndroidX=true
+          android.enableJetifier=true
+          org.gradle.jvmargs=-Xmx4g -Dfile.encoding=UTF-8
+          EOF
+
+      - name: Assemble Tsuyu debug APK
+        working-directory: yoru-android
+        run: gradle --no-daemon --stacktrace :app:assembleTsuyuDebug
+
+      - name: Upload APK for handoff
+        uses: actions/upload-artifact@v4
+        with:
+          name: tsuyu-apk
+          path: yoru-android/app/build/outputs/apk/tsuyu/debug/*.apk
+          if-no-files-found: error
+          retention-days: 14
