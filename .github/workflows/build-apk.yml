@@ -124,6 +124,18 @@ jobs:
           if-no-files-found: warn
           retention-days: 3
 
+      - name: Expose failed build log
+        if: failure()
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp assemble.log ci-build.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f ci-build.log
+          git commit -m "CI build log [skip ci]"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
       - name: Copy and verify release APK
         shell: bash
         run: |
