@@ -111,30 +111,7 @@ jobs:
 
       - name: Assemble Tsuyu release APK
         working-directory: yoru-android
-        run: |
-          set -o pipefail
-          gradle --no-daemon --stacktrace --console=plain :app:assembleTsuyuRelease 2>&1 | tee "$GITHUB_WORKSPACE/assemble.log"
-
-      - name: Upload build log
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: tsuyu-build-log
-          path: assemble.log
-          if-no-files-found: warn
-          retention-days: 3
-
-      - name: Expose failed build log
-        if: failure()
-        shell: bash
-        run: |
-          set -euo pipefail
-          cp assemble.log ci-build.log
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f ci-build.log
-          git commit -m "CI build log [skip ci]"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+        run: gradle --no-daemon --stacktrace :app:assembleTsuyuRelease
 
       - name: Copy and verify release APK
         shell: bash
