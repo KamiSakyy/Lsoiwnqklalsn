@@ -8,7 +8,7 @@ on:
       - 'arena/**'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -90,10 +90,23 @@ jobs:
         working-directory: yoru-android
         run: gradle --no-daemon --stacktrace :app:assembleTsuyuDebug
 
+      - name: Copy APK into handoff
+        shell: bash
+        run: |
+          mkdir -p handoff
+          APK="$(find yoru-android/app/build/outputs/apk/tsuyu/debug -type f -name '*.apk' -print -quit)"
+          test -n "$APK"
+          cp "$APK" handoff/tsuyu-debug.apk
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add handoff/tsuyu-debug.apk
+          git commit -m "Handoff APK [skip ci]"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
       - name: Upload APK for handoff
         uses: actions/upload-artifact@v4
         with:
           name: tsuyu-apk
-          path: yoru-android/app/build/outputs/apk/tsuyu/debug/*.apk
+          path: handoff/tsuyu-debug.apk
           if-no-files-found: error
           retention-days: 14
