@@ -126,7 +126,7 @@ jobs:
           disable-animations: true
           script: |
             set -eu
-            SMOKE_LOG="${GITHUB_WORKSPACE}/runtime-smoke.log"
+            SMOKE_LOG="${GITHUB_WORKSPACE:-$(pwd)}/runtime-smoke.log"
             echo "smoke_pwd=$(pwd) smoke_log=$SMOKE_LOG" > "$SMOKE_LOG"
             APK="yoru-android/app/build/outputs/apk/tsuyu/release/app-tsuyu-release.apk"
             test -s "$APK"
@@ -192,7 +192,7 @@ jobs:
         shell: bash
         run: |
           set -eu
-          LOG="${GITHUB_WORKSPACE}/runtime-smoke.log"
+          LOG="${GITHUB_WORKSPACE:-$(pwd)}/runtime-smoke.log"
           echo "diagnostic_pwd=$(pwd) log=$LOG"
           ls -l "$LOG" 2>/dev/null || true
           if [ ! -s "$LOG" ]; then exit 0; fi
