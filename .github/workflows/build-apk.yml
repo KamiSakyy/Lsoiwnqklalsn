@@ -156,8 +156,10 @@ jobs:
             find "$ROOT" -type f -name 'runtime-smoke.log' -o -name 'runtime-*.log' 2>/dev/null || true
             find /home/runner/work -type f -name 'runtime-smoke.log' 2>/dev/null || true
           } > "$DEBUG"
+          # DEBUG is tracked while this diagnostic path is being debugged, so stage
+          # it as well; otherwise rebase would reject the modified worktree.
+          git add "$DEBUG"
           if [ ! -s "$LOG" ]; then
-            git add "$DEBUG"
             git commit -m "Record Android runtime diagnostic location [skip ci]" || true
           else
             git add "$LOG"
