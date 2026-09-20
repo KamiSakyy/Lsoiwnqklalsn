@@ -125,7 +125,7 @@ jobs:
           emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect
           disable-animations: true
           script: |
-            set -euo pipefail
+            set -eu
             APK="yoru-android/app/build/outputs/apk/tsuyu/release/app-tsuyu-release.apk"
             test -s "$APK"
             adb wait-for-device
