@@ -134,20 +134,25 @@ jobs:
             cat > /tmp/smoke.py <<'PY'
             import json
             titles = [
-              ("slime4", 59970, "О моём перерождении в слизь 4", "Tensei shitara Slime Datta Ken 4th Season", 2026),
-              ("onepiece", 21, "Ван-Пис", "One Piece", 1999),
-              ("solo2", 58567, "Поднятие уровня в одиночку 2", "Ore dake Level Up na Ken Season 2", 2025),
-              ("frieren", 52991, "Провожающая в последний путь Фрирен", "Sousou no Frieren", 2023),
+              ("slime4", 59970),
+              ("onepiece", 21),
+              ("solo2", 58567),
+              ("frieren", 52991),
             ]
-            for key, mal, title, original, year in titles:
-              value = {"id": "shikimori:%d" % mal, "provider": "shikimori", "nativeId": str(mal), "title": title, "english": original, "year": year, "mId": mal, "episodesTotal": 24, "episodesAired": 1}
+            for key, mal in titles:
+              # Keep the extra shell-safe: the runtime resolves by the stable MAL/Shikimori id.
+              value = {"id": "shikimori:%d" % mal, "provider": "shikimori", "nativeId": str(mal), "title": key, "english": key, "mId": mal, "episodesTotal": 24, "episodesAired": 1}
               print(key + "=" + json.dumps(value, ensure_ascii=False, separators=(",", ":")))
             PY
             python3 /tmp/smoke.py | while IFS='=' read -r key json; do
               echo "=== runtime $key ===" | tee -a runtime-smoke.log
               adb shell am force-stop com.tsuyu.line
               adb logcat -c
-              adb shell am start -n com.tsuyu.line/.PlayerActivity --es anime "$json" --ed episode 1 2>&1 | tee -a runtime-smoke.log
+              if ! adb shell am start -n com.tsuyu.line/.PlayerActivity --es anime "$json" --ed episode 1 2>&1 | tee -a runtime-smoke.log; then
+                echo "AM_START_FAILURE_$key" | tee -a runtime-smoke.log >&2
+                adb logcat -d -v brief | tail -n 400 | tee -a runtime-smoke.log >&2 || true
+                exit 1
+              fi
               pass=0
               for n in $(seq 1 90); do
                 sleep 1
