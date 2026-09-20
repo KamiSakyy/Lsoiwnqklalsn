@@ -21,8 +21,15 @@ trap failure_dump ERR
 log "smoke_pwd=$(pwd) smoke_root=$ROOT smoke_log=$SMOKE_LOG"
 APK="yoru-android/app/build/outputs/apk/tsuyu/release/app-tsuyu-release.apk"
 test -s "$APK"
-adb wait-for-device
-adb install -r "$APK"
+if ! wait_output="$(adb wait-for-device 2>&1)"; then
+  log "ADB_WAIT_FAILURE $wait_output"
+  exit 1
+fi
+if ! install_output="$(adb install -r "$APK" 2>&1)"; then
+  log "ADB_INSTALL_FAILURE $install_output"
+  exit 1
+fi
+log "ADB_INSTALL_OK $install_output"
 
 cat > /tmp/tsuyu-smoke.py <<'PY'
 import json
