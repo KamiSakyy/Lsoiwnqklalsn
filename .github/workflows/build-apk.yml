@@ -125,62 +125,9 @@ jobs:
           emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect
           disable-animations: true
           working-directory: .
-          script: |
-            # Do not require git before creating the diagnostic file: the emulator
-            # action may invoke this script from its own working directory.
-            SMOKE_ROOT="${GITHUB_WORKSPACE:-$PWD}"
-            SMOKE_LOG="$SMOKE_ROOT/runtime-smoke.log"
-            : > "$SMOKE_LOG"
-            echo "smoke_pwd=$(pwd) smoke_root=$SMOKE_ROOT smoke_log=$SMOKE_LOG" >> "$SMOKE_LOG"
-            cd "$SMOKE_ROOT"
-            set -eu
-            APK="yoru-android/app/build/outputs/apk/tsuyu/release/app-tsuyu-release.apk"
-            test -s "$APK"
-            adb wait-for-device
-            adb install -r "$APK"
-            : > "$SMOKE_LOG"
-            cat > /tmp/smoke.py <<'PY'
-            import json
-            titles = [
-              ("slime4", 59970),
-              ("onepiece", 21),
-              ("solo2", 58567),
-              ("frieren", 52991),
-            ]
-            for key, mal in titles:
-              # Keep the extra shell-safe: the runtime resolves by the stable MAL/Shikimori id.
-              value = {"id": "shikimori:%d" % mal, "provider": "shikimori", "nativeId": str(mal), "title": key, "english": key, "mId": mal, "episodesTotal": 24, "episodesAired": 1}
-              print(key + "=" + json.dumps(value, ensure_ascii=False, separators=(",", ":")))
-            PY
-            python3 /tmp/smoke.py | while IFS='=' read -r key json; do
-              echo "=== runtime $key ===" | tee -a "$SMOKE_LOG"
-              adb shell am force-stop com.tsuyu.line
-              adb logcat -c
-              if ! adb shell am start -n com.tsuyu.line/.PlayerActivity --es anime "$json" --ed episode 1 2>&1 | tee -a "$SMOKE_LOG"; then
-                echo "AM_START_FAILURE_$key" | tee -a "$SMOKE_LOG" >&2
-                adb logcat -d -v brief | tail -n 400 | tee -a "$SMOKE_LOG" >&2 || true
-                exit 1
-              fi
-              pass=0
-              for n in $(seq 1 90); do
-                sleep 1
-                runtime_log="$(adb logcat -d -s TsuyuRuntime:I '*:S' 2>/dev/null || true)"
-                printf '%s\n' "$runtime_log" > /tmp/runtime-$key.log
-                cat /tmp/runtime-$key.log >> "$SMOKE_LOG"
-                if echo "$runtime_log" | grep -Eq 'PLAYBACK_READY .*episodes=[1-9][0-9]* .*voices_ep1=[1-9][0-9]*'; then
-                  if echo "$runtime_log" | grep -q 'MEDIA_READY'; then pass=1; break; fi
-                fi
-                if adb shell dumpsys activity activities 2>/dev/null | grep -q 'com.tsuyu.line/.PlayerActivity'; then :; else
-                  echo "Activity exited before runtime-ready for $key" | tee -a "$SMOKE_LOG"
-                fi
-              done
-              if [ "$pass" -ne 1 ]; then
-                echo "RUNTIME_FAILURE_$key" | tee -a "$SMOKE_LOG" >&2
-                adb logcat -d -v brief | tail -n 400 | tee -a "$SMOKE_LOG" >&2 || true
-                exit 1
-              fi
-              echo "RUNTIME_PASS_$key" | tee -a "$SMOKE_LOG"
-            done
+          # The action intentionally executes each physical script line separately.
+          # Keep the smoke test in one checked-in shell script so state and traps persist.
+          script: bash scripts/android_runtime_smoke.sh
 
       - name: Upload build diagnostics
         if: failure()
