@@ -197,14 +197,32 @@ def resolve_kodik(url):
     form.update({"bad_user": "true", "cdn_is_working": "true", "info": "{}"})
     post_headers = {"Referer": url, "Origin": parsed.scheme + "://" + parsed.netloc,
                     "Accept": "application/json, text/javascript, */*; q=0.01", "X-Requested-With": "XMLHttpRequest",
+                    "User-Agent": "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Mobile Safari/537.36",
                     "Cookie": _cookies(headers)}
-    post_data = urlencode(form).encode()
+    def java_form(rows):
+        parts = []
+        for key, value in rows.items():
+            encoded_key = quote(str(key), safe="")
+            raw = key == "ref" and bool(re.search(r"%[0-9A-Fa-f]{2}", str(value)))
+            parts.append(encoded_key + "=" + (str(value) if raw else quote(str(value), safe="")))
+        return "&".join(parts).encode()
+    post_data = java_form(form)
     ps, ph, pb, pe = fetch(endpoint, post_data, post_headers, 20)
     root = None
     try:
         root = json.loads(pb.decode("utf-8", "replace"))
     except Exception as e:
         result["post_json_error"] = str(e)
+        result["post_body"] = pb.decode("utf-8", "replace")[:400]
+        # Match VideoResolver.postJson fallback after the form endpoint rejects the request.
+        json_headers = dict(post_headers)
+        json_headers["Content-Type"] = "application/json"
+        json_body = json.dumps({"videoId": payload.get("id", ""), **{k: payload.get(k, "") for k in ("d", "d_sign", "pd", "pd_sign", "ref", "ref_sign", "type", "hash", "id")}}, ensure_ascii=False).encode()
+        js, jh, jb, je = fetch(endpoint, json_body, json_headers, 20)
+        result["json_fallback"] = {"status": js, "ms": round(je * 1000), "bytes": len(jb), "body": jb.decode("utf-8", "replace")[:300]}
+        if js and 200 <= js < 300:
+            try: root = json.loads(jb.decode("utf-8", "replace"))
+            except Exception: root = None
     links = root.get("links") if isinstance(root, dict) else None
     resolved = {}
     if isinstance(links, dict):
