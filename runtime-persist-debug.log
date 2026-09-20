@@ -1,0 +1,19 @@
+diagnostic_pwd=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn root=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn log=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn/runtime-smoke.log
+total 612
+drwxr-xr-x 8 runner runner   4096 Sep 20 15:21 .
+drwxr-xr-x 3 runner runner   4096 Sep 20 15:10 ..
+drwxr-xr-x 7 runner runner   4096 Sep 20 15:21 .git
+drwxr-xr-x 3 runner runner   4096 Sep 20 15:10 .github
+-rw-r--r-- 1 runner runner     15 Sep 20 15:10 README.md
+-rw-r--r-- 1 runner runner 522749 Sep 20 15:10 Tsuyu-1.20-source (2).zip
+-rw-r--r-- 1 runner runner   5209 Sep 20 15:13 gradle-build.log
+drwxr-xr-x 2 runner runner   4096 Sep 20 15:10 handoff
+drwxr-xr-x 2 runner runner   4096 Sep 20 15:10 owner-signing
+-rw-r--r-- 1 runner runner    180 Sep 20 15:21 runtime-persist-debug.log
+-rw-r--r-- 1 runner runner  21192 Sep 20 15:21 runtime-smoke.log
+drwxr-xr-x 2 runner runner   4096 Sep 20 15:10 scripts
+-rw-r--r-- 1 runner runner  28524 Sep 20 15:10 source-audit.log
+drwxr-xr-x 6 runner runner   4096 Sep 20 15:13 yoru-android
+/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn/runtime-smoke.log
+/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn/runtime-persist-debug.log
+/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn/runtime-smoke.log

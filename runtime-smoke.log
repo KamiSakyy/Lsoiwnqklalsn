@@ -1,0 +1,188 @@
+smoke_pwd=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn smoke_root=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn smoke_log=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn/runtime-smoke.log
+ADB_INSTALL_OK Performing Streamed Install
+Success
+=== runtime slime4 ===
+Starting: Intent { act=android.intent.action.VIEW dat=provider:shikimori cmp=com.tsuyu.line/.PlayerActivity (has extras) }
+
+Exception occurred while executing 'start':
+java.lang.SecurityException: Permission Denial: starting Intent { act=android.intent.action.VIEW dat=provider:shikimori flg=0x10000000 cmp=com.tsuyu.line/.PlayerActivity (has extras) } from null (pid=2846, uid=2000) not exported from uid 10130
+	at com.android.server.wm.ActivityStackSupervisor.checkStartAnyActivityPermission(ActivityStackSupervisor.java:1032)
+	at com.android.server.wm.ActivityStarter.executeRequest(ActivityStarter.java:999)
+	at com.android.server.wm.ActivityStarter.execute(ActivityStarter.java:669)
+	at com.android.server.wm.ActivityTaskManagerService.startActivityAsUser(ActivityTaskManagerService.java:1100)
+	at com.android.server.wm.ActivityTaskManagerService.startActivityAsUser(ActivityTaskManagerService.java:1072)
+	at com.android.server.am.ActivityManagerService.startActivityAsUserWithFeature(ActivityManagerService.java:3678)
+	at com.android.server.am.ActivityManagerShellCommand.runStartActivity(ActivityManagerShellCommand.java:544)
+	at com.android.server.am.ActivityManagerShellCommand.onCommand(ActivityManagerShellCommand.java:186)
+	at android.os.BasicShellCommandHandler.exec(BasicShellCommandHandler.java:98)
+	at android.os.ShellCommand.exec(ShellCommand.java:44)
+	at com.android.server.am.ActivityManagerService.onShellCommand(ActivityManagerService.java:10521)
+	at android.os.Binder.shellCommand(Binder.java:929)
+	at android.os.Binder.onTransact(Binder.java:813)
+	at android.app.IActivityManager$Stub.onTransact(IActivityManager.java:5027)
+	at com.android.server.am.ActivityManagerService.onTransact(ActivityManagerService.java:2883)
+	at android.os.Binder.execTransactInternal(Binder.java:1159)
+	at android.os.Binder.execTransact(Binder.java:1123)
+AM_START_FAILURE_slime4
+--------- beginning of main
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+V/AvrcpMediaPlayerList(  818): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList(  818): Name of package changed: com.android.camera2
+I/InputReader(  550): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+I/InputReader(  550): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+V/AvrcpMediaPlayerList(  818): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList(  818): Name of package changed: com.android.stk
+I/InputReader(  550): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+W/system_server(  550): Long monitor contention with owner ActivityManager (605) at void com.android.server.am.BroadcastQueue.processNextBroadcast(boolean)(BroadcastQueue.java:948) waiters=3 in int com.android.server.am.ActivityManagerService$LocalService.broadcastIntent(android.content.Intent, android.content.IIntentReceiver, java.lang.String[], boolean, int, int[]) for 107ms
+V/AvrcpMediaPlayerList(  818): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList(  818): Name of package changed: com.android.provision
+W/system_server(  550): Long monitor contention with owner ActivityManager (605) at void com.android.server.am.BroadcastQueue.processNextBroadcast(boolean)(BroadcastQueue.java:948) waiters=2 in android.content.Intent com.android.server.am.ActivityManagerService.registerReceiverWithFeature(android.app.IApplicationThread, java.lang.String, java.lang.String, android.content.IIntentReceiver, android.content.IntentFilter, java.lang.String, int, int) for 343ms
+I/InputReader(  550): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+I/InputReader(  550): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+V/AvrcpMediaPlayerList(  818): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList(  818): Name of package changed: com.android.calendar
+--------- beginning of system
+W/Looper  (  550): Slow dispatch took 302ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@828ffec m=0
+I/Telecom (  550): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AG0
+V/AvrcpMediaPlayerList(  818): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList(  818): Name of package changed: com.android.gallery3d
+I/InputReader(  550): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+I/Telecom (  550): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AG4
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+I/InputReader(  550): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+V/AvrcpMediaPlayerList(  818): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList(  818): Name of package changed: com.android.inputmethod.latin
+D/CarrierSvcBindHelper( 1199): No carrier app for: 0
+W/Looper  (  550): Slow dispatch took 174ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=1
+W/Looper  (  550): Slow dispatch took 827ms android.fg h=android.os.Handler c=<recycled PooledLambda@b96c9a1> m=0
+V/AvrcpMediaPlayerList(  818): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList(  818): Name of package changed: com.android.settings
+I/InputReader(  550): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+W/Looper  (  550): Slow dispatch took 200ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@1355edd m=0
+I/Telecom (  550): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AG8
+I/RoleManagerService(  550): Granting default roles...
+W/Looper  (  550): Slow dispatch took 192ms android.fg h=android.os.Handler c=com.android.server.role.-$$Lambda$RoleManagerService$p0uu3WH3gz96-kAWnyu6IUHMtCg@1941e01 m=0
+I/PermissionControllerServiceImpl(  861): Updating user sensitive for uid 1027
+I/InputReader(  550): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+V/AvrcpMediaPlayerList(  818): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList(  818): Name of package changed: com.android.traceur
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+W/Looper  (  550): Slow dispatch took 184ms android.fg h=android.os.Handler c=<recycled PooledLambda@14cfe76> m=0
+I/PermissionControllerServiceImpl(  861): Updating user sensitive for uid 10104
+I/PermissionControllerServiceImpl(  861): Updating user sensitive for uid 10110
+I/MediaProvider( 2520): Invalidating LocalCallingIdentity cache for package com.tsuyu.line. Reason: package android.intent.action.PACKAGE_ADDED
+D/CarrierSvcBindHelper( 1199): No carrier app for: 0
+I/InputReader(  550): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+V/AvrcpMediaPlayerList(  818): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_ADDED
+D/AvrcpMediaPlayerList(  818): Name of package changed: com.tsuyu.line
+W/BroadcastQueue(  550): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.tsuyu.line flg=0x4000010 (has extras) } to com.android.packageinstaller/.PackageInstalledReceiver
+W/Looper  (  550): Slow dispatch took 289ms android.fg h=android.os.Handler c=<recycled PooledLambda@765f87c> m=0
+I/ActivityManager(  550): Force stopping com.tsuyu.line appid=10130 user=0: from pid 2838
+W/BroadcastQueue(  550): Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.tsuyu.line flg=0x4000010 (has extras) } to com.android.gallery3d/.app.PackagesMonitor
+E/adbd    (  384): error reading output FD 36: Connection reset by peer
+W/Looper  (  550): Slow dispatch took 161ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=null m=31
+W/Looper  (  550): Slow dispatch took 819ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@62f8fbd m=0
+I/Telecom (  550): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AHA
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+I/Telecom (  550): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AHE
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+D/CarrierSvcBindHelper( 1199): No carrier app for: 0
+W/Looper  (  550): Slow dispatch took 683ms android.fg h=android.os.Handler c=<recycled PooledLambda@e230294> m=0
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+I/Telecom (  550): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AHI
+I/Telecom (  550): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AHM
+I/Telecom (  550): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AHQ
+W/Looper  (  550): Slow dispatch took 376ms android.fg h=android.os.Handler c=<recycled PooledLambda@6c59df8> m=0
+W/Looper  (  550): Slow dispatch took 107ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@e1602d1 m=0
+I/Telecom (  550): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AHU
+W/Looper  (  550): Slow dispatch took 210ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@6b2a1a4 m=0
+I/chatty  (  550): uid=1000(system) BackgroundDexOp identical 3 lines
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+W/system_server(  550): Long monitor contention with owner android.bg (604) at void com.android.server.search.SearchManagerService$MyPackageMonitor.updateSearchables()(SearchManagerService.java:184) waiters=0 in com.android.server.search.Searchables com.android.server.search.SearchManagerService.getSearchables(int, boolean) for 538ms
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+W/Looper  (  550): Slow dispatch took 410ms android.fg h=android.os.Handler c=<recycled PooledLambda@5d9a872> m=0
+D/CarrierSvcBindHelper( 1199): No carrier app for: 0
+I/Choreographer( 1089): Skipped 38 frames!  The application may be doing too much work on its main thread.
+W/Looper  (  550): Slow dispatch took 124ms android.fg h=android.os.Handler c=<recycled PooledLambda@315d9be> m=0
+I/OpenGLRenderer( 1089): Davey! duration=732ms; Flags=0, IntendedVsync=455611210343, Vsync=456244543651, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=456260286349, AnimationStart=456260292979, PerformTraversalsStart=456260295686, DrawStart=456267751158, SyncQueued=456278633350, SyncStart=456290290506, IssueDrawCommandsStart=456294443939, SwapBuffers=456311035328, FrameCompleted=456355599085, DequeueBufferDuration=24391771, QueueBufferDuration=9505721, GpuCompleted=3473740099256465462, 
+W/system_server(  550): Long monitor contention with owner android.bg (604) at int com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(android.app.IApplicationThread, java.lang.String, android.content.Intent, java.lang.String, android.content.IIntentReceiver, int, java.lang.String, android.os.Bundle, java.lang.String[], int, android.os.Bundle, boolean, boolean, int)(ActivityManagerService.java:16749) waiters=0 in android.content.Intent com.android.server.am.ActivityManagerService.registerReceiverWithFeature(android.app.IApplicationThread, java.lang.String, java.lang.String, android.content.IIntentReceiver, android.content.IntentFilter, java.lang.String, int, int) for 320ms
+W/system_server(  550): Long monitor contention with owner android.bg (604) at int com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(android.app.IApplicationThread, java.lang.String, android.content.Intent, java.lang.String, android.content.IIntentReceiver, int, java.lang.String, android.os.Bundle, java.lang.String[], int, android.os.Bundle, boolean, boolean, int)(ActivityManagerService.java:16749) waiters=1 in boolean com.android.server.am.ActivityManagerService.isAppBad(android.content.pm.ApplicationInfo) for 324ms
+W/Looper  (  550): Slow dispatch took 400ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=1
+I/system_server(  550): Background concurrent copying GC freed 93036(5111KB) AllocSpace objects, 57(3420KB) LOS objects, 49% free, 10MB/21MB, paused 178us total 4.579s
+W/VoiceInteractionManager(  550): no available voice interaction services found for user 0
+W/Looper  (  550): Slow dispatch took 322ms android.fg h=android.os.Handler c=<recycled PooledLambda@d708579> m=0
+I/PermissionControllerServiceImpl(  861): Updating user sensitive for uid 1001
+I/PermissionControllerServiceImpl(  861): Updating user sensitive for uid 10116
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+W/system_server(  550): Long monitor contention with owner android.fg (596) at int com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.getApplicationEnabledState(java.lang.String, int)(PackageManagerService.java:24933) waiters=3 in java.lang.String com.android.server.pm.PackageManagerService.getInstantAppPackageName(int) for 120ms
+I/RoleManagerService(  550): Granting default roles...
+W/Looper  (  550): Slow dispatch took 201ms android.fg h=android.os.Handler c=com.android.server.role.-$$Lambda$RoleManagerService$p0uu3WH3gz96-kAWnyu6IUHMtCg@1941e01 m=0
+D/CarrierSvcBindHelper( 1199): No carrier app for: 0
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+W/Looper  (  550): Slow dispatch took 222ms android.fg h=android.os.Handler c=<recycled PooledLambda@1db33f7> m=0
+W/Looper  (  550): Drained
+W/Looper  (  550): Slow dispatch took 258ms android.fg h=android.os.Handler c=<recycled PooledLambda@711f9d7> m=0
+W/Looper  (  550): Slow dispatch took 250ms android.fg h=android.os.Handler c=<recycled PooledLambda@f3a7abb> m=0
+I/chatty  (  550): uid=1000(system) BackgroundDexOp identical 7 lines
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+I/PermissionControllerServiceImpl(  861): Updating user sensitive for uid 10108
+I/PermissionControllerServiceImpl(  861): Updating user sensitive for uid 10112
+D/CarrierSvcBindHelper( 1199): No carrier app for: 0
+I/PermissionControllerServiceImpl(  861): Updating user sensitive for uid 10103
+I/PermissionControllerServiceImpl(  861): Updating user sensitive for uid 1000
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+W/Looper  (  550): Slow dispatch took 314ms android.fg h=android.os.Handler c=<recycled PooledLambda@7857d0d> m=0
+I/PermissionControllerServiceImpl(  861): Updating user sensitive for uid 10088
+I/PermissionControllerServiceImpl(  861): Updating user sensitive for uid 10130
+W/system_server(  550): Long monitor contention with owner android.bg (604) at int com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(android.app.IApplicationThread, java.lang.String, android.content.Intent, java.lang.String, android.content.IIntentReceiver, int, java.lang.String, android.os.Bundle, java.lang.String[], int, android.os.Bundle, boolean, boolean, int)(ActivityManagerService.java:16749) waiters=0 in android.content.Intent com.android.server.am.ActivityManagerService.registerReceiverWithFeature(android.app.IApplicationThread, java.lang.String, java.lang.String, android.content.IIntentReceiver, android.content.IntentFilter, java.lang.String, int, int) for 118ms
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+W/Looper  (  550): Slow dispatch took 405ms android.fg h=android.os.Handler c=<recycled PooledLambda@5d9a872> m=0
+W/Looper  (  550): Slow dispatch took 480ms android.fg h=android.os.Handler c=<recycled PooledLambda@cdeeb29> m=0
+I/chatty  (  550): uid=1000(system) BackgroundDexOp identical 4 lines
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+D/CarrierSvcBindHelper( 1199): No carrier app for: 0
+W/VoiceInteractionManager(  550): no available voice interaction services found for user 0
+W/Looper  (  550): Slow dispatch took 179ms android.fg h=android.os.Handler c=<recycled PooledLambda@315d9be> m=0
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+D/ModelWriter( 1089): removing items from db 
+D/ModelWriter( 1089): java.lang.Exception
+D/ModelWriter( 1089): 	at com.android.launcher3.model.ModelWriter.deleteItemsFromDatabase(ModelWriter.java:272)
+D/ModelWriter( 1089): 	at com.android.launcher3.model.ModelWriter.deleteItemsFromDatabase(ModelWriter.java:262)
+D/ModelWriter( 1089): 	at com.android.launcher3.model.BaseModelUpdateTask.deleteAndBindComponentsRemoved(BaseModelUpdateTask.java:111)
+D/ModelWriter( 1089): 	at com.android.launcher3.model.PackageUpdatedTask.execute(PackageUpdatedTask.java:323)
+D/ModelWriter( 1089): 	at com.android.launcher3.model.BaseModelUpdateTask.run(BaseModelUpdateTask.java:67)
+D/ModelWriter( 1089): 	at android.os.Handler.handleCallback(Handler.java:938)
+D/ModelWriter( 1089): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/ModelWriter( 1089): 	at android.os.Looper.loop(Looper.java:223)
+D/ModelWriter( 1089): 	at android.os.HandlerThread.run(HandlerThread.java:67)
+W/Looper  (  550): Slow dispatch took 215ms android.fg h=android.os.Handler c=<recycled PooledLambda@1db33f7> m=0
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+W/Looper  (  550): Slow dispatch took 128ms android.fg h=android.os.Handler c=<recycled PooledLambda@b61d64b> m=0
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+D/EventSequenceValidator(  550): Transition from ACTIVITY_FINISHED to INTENT_STARTED
+I/ActivityTaskManager(  550): START u0 {act=android.intent.action.VIEW dat=provider:shikimori flg=0x10000000 cmp=com.tsuyu.line/.PlayerActivity (has extras)} from uid 2000
+W/ActivityTaskManager(  550): Permission Denial: starting Intent { act=android.intent.action.VIEW dat=provider:shikimori flg=0x10000000 cmp=com.tsuyu.line/.PlayerActivity (has extras) } from null (pid=2846, uid=2000) not exported from uid 10130
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+E/IPCThreadState(  412): binder thread pool (1 threads) starved for 105 ms
+D/CarrierSvcBindHelper( 1199): No carrier app for: 0
+W/Looper  (  550): Slow dispatch took 274ms android.fg h=android.os.Handler c=<recycled PooledLambda@d34bc1f> m=0
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+W/Looper  (  550): Slow dispatch took 240ms android.fg h=android.os.Handler c=<recycled PooledLambda@adc2a07> m=0
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+I/perfetto(  395): ing_service_impl.cc:758 Configured tracing session 4, #sources:1, duration:5000 ms, #buffers:1, total buffer size:4096 KB, total sessions:1, uid:1071 session name: ""
+W/Looper  (  550): Slow dispatch took 141ms android.fg h=android.os.Handler c=<recycled PooledLambda@fdf895d> m=0
+W/VoiceInteractionManager(  550): no available voice interaction services found for user 0
+W/Looper  (  550): Slow dispatch took 113ms android.fg h=android.os.Handler c=<recycled PooledLambda@b5992a0> m=0
+I/perfetto(  390): probes_producer.cc:230  Ftrace setup (target_buf=4)
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+I/perfetto(  390): ftrace_procfs.cc:176    enabled ftrace
+--------- beginning of kernel
+W/perfetto(    0): enabled ftrace
+D/CarrierSvcBindHelper( 1199): No carrier app for: 0
+W/system_server(  550): Long monitor contention with owner android.fg (596) at android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int)(PackageManagerService.java:4971) waiters=2 in android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int) for 222ms
+I/system_server(  550): The ClassLoaderContext is a special shared library.
+W/Looper  (  550): Slow dispatch took 288ms android.fg h=android.os.Handler c=<recycled PooledLambda@765f87c> m=0
+D/logd    (    0): logdr: UID=2000 GID=2000 PID=2855 n tail=0 logMask=99 pid=0 start=0ns timeout=0ns
+W/Looper  (  550): Slow dispatch took 236ms android.fg h=android.os.Handler c=<recycled PooledLambda@315d9be> m=0
+W/Looper  (  550): Slow dispatch took 236ms android.fg h=android.os.Handler c=<recycled PooledLambda@cdeeb29> m=0
