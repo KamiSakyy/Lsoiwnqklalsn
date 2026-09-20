@@ -209,16 +209,15 @@ jobs:
           if [ ! -s "$LOG" ]; then
             git add "$DEBUG"
             git commit -m "Record Android runtime diagnostic location [skip ci]" || true
-            git push origin "HEAD:${GITHUB_REF_NAME}" || true
-            exit 0
+          else
+            git add "$LOG"
+            git commit -m "Persist Android runtime smoke diagnostics [skip ci]" || exit 0
           fi
-          git add "$LOG"
-          git commit -m "Persist Android runtime smoke diagnostics [skip ci]" || exit 0
-          git push origin "HEAD:${GITHUB_REF_NAME}" || {
-            git fetch origin "${GITHUB_REF_NAME}"
-            git rebase "origin/${GITHUB_REF_NAME}"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
-          }
+          # The source-audit workflow can commit while this job is running. Rebase
+          # before pushing so the diagnostic commit is not silently discarded.
+          git fetch origin "${GITHUB_REF_NAME}"
+          git rebase "origin/${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
 
       - name: Copy and verify release APK
         shell: bash
