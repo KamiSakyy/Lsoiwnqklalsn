@@ -86,28 +86,45 @@ jobs:
           org.gradle.jvmargs=-Xmx4g -Dfile.encoding=UTF-8
           EOF
 
-      - name: Create temporary release signing key
+      - name: Restore persistent release signing key
         shell: bash
+        env:
+          TSUYU_RELEASE_SIGNING_BUNDLE: ${{ secrets.TSUYU_RELEASE_SIGNING_BUNDLE }}
         run: |
           set -euo pipefail
-          mkdir -p yoru-android/owner-signing
-          SIGNING_PASSWORD="$(openssl rand -hex 32)"
-          printf 'TSUYU_SIGNING_PASSWORD=%s\n' "$SIGNING_PASSWORD" >> "$GITHUB_ENV"
-          keytool -genkeypair -noprompt \
-            -keystore yoru-android/owner-signing/yoru-release.p12 \
-            -storetype PKCS12 \
-            -storepass "$SIGNING_PASSWORD" \
-            -keypass "$SIGNING_PASSWORD" \
-            -alias tsuyu-actions \
-            -keyalg RSA \
-            -keysize 2048 \
-            -validity 365 \
-            -dname "CN=Tsuyu Actions, OU=Build, O=Tsuyu, L=CI, ST=CI, C=DE"
-          cat > yoru-android/owner-signing/signing.properties <<EOF
-          storePassword=$SIGNING_PASSWORD
-          keyAlias=tsuyu-actions
-          keyPassword=$SIGNING_PASSWORD
-          EOF
+          if [ -z "$TSUYU_RELEASE_SIGNING_BUNDLE" ]; then
+            echo "::error::The persistent release signing secret TSUYU_RELEASE_SIGNING_BUNDLE is not configured."
+            exit 1
+          fi
+          export TSUYU_RELEASE_SIGNING_BUNDLE
+          python3 - <<'PY'
+          import base64
+          import json
+          import os
+          from pathlib import Path
+
+          bundle = json.loads(os.environ["TSUYU_RELEASE_SIGNING_BUNDLE"])
+          required = ("keystore", "storePassword", "keyAlias", "keyPassword")
+          if any(not str(bundle.get(key, "")) for key in required):
+              raise SystemExit("Signing bundle is incomplete")
+          signing = Path("yoru-android/owner-signing")
+          signing.mkdir(parents=True, exist_ok=True)
+          (signing / "yoru-release.p12").write_bytes(
+              base64.b64decode(bundle["keystore"], validate=True)
+          )
+          (signing / "signing.properties").write_text(
+              "storePassword=" + str(bundle["storePassword"]) + "\n"
+              "keyAlias=" + str(bundle["keyAlias"]) + "\n"
+              "keyPassword=" + str(bundle["keyPassword"]) + "\n",
+              encoding="utf-8",
+          )
+          PY
+          chmod 600 yoru-android/owner-signing/yoru-release.p12 yoru-android/owner-signing/signing.properties
+          TSUYU_SIGNING_PASSWORD="$(sed -n 's/^storePassword=//p' yoru-android/owner-signing/signing.properties)"
+          TSUYU_SIGNING_ALIAS="$(sed -n 's/^keyAlias=//p' yoru-android/owner-signing/signing.properties)"
+          keytool -list -keystore yoru-android/owner-signing/yoru-release.p12 \
+            -storetype PKCS12 -storepass "$TSUYU_SIGNING_PASSWORD" \
+            -alias "$TSUYU_SIGNING_ALIAS" >/dev/null
 
       - name: Assemble Tsuyu release APK
         working-directory: yoru-android
@@ -123,7 +140,7 @@ jobs:
           rm -f handoff/tsuyu-debug.apk handoff/tsuyu-release.apk
           cp "$APK" handoff/tsuyu-release.apk
           unzip -t handoff/tsuyu-release.apk >/dev/null
-          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose handoff/tsuyu-release.apk
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose --print-certs handoff/tsuyu-release.apk
           sha256sum handoff/tsuyu-release.apk
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
