@@ -1,3 +1,0 @@
-smoke_pwd=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn smoke_root=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn smoke_log=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn/runtime-smoke.log
-ADB_INSTALL_FAILURE Performing Streamed Install
-adb: failed to install yoru-android/app/build/outputs/apk/tsuyu/release/app-tsuyu-release.apk: Failure [INSTALL_FAILED_NO_MATCHING_ABIS: Failed to extract native libraries, res=-113]
