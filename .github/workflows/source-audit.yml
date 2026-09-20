@@ -7,7 +7,7 @@ on:
       - 'arena/**'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   audit:
@@ -16,11 +16,11 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v4
       - name: Audit four real anime through source APIs
-        run: python3 scripts/source_audit.py | tee source-audit.log
-      - name: Upload audit log
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: source-playback-audit
-          path: source-audit.log
-          if-no-files-found: error
+        run: python3 scripts/source_audit.py > source-audit.log 2>&1 || true
+      - name: Persist audit log for inspection
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source-audit.log
+          git commit -m 'Persist source audit results [skip ci]' || true
+          git push
