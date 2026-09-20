@@ -126,11 +126,14 @@ jobs:
           disable-animations: true
           working-directory: .
           script: |
+            # Do not require git before creating the diagnostic file: the emulator
+            # action may invoke this script from its own working directory.
+            SMOKE_ROOT="${GITHUB_WORKSPACE:-$PWD}"
+            SMOKE_LOG="$SMOKE_ROOT/runtime-smoke.log"
+            : > "$SMOKE_LOG"
+            echo "smoke_pwd=$(pwd) smoke_root=$SMOKE_ROOT smoke_log=$SMOKE_LOG" >> "$SMOKE_LOG"
+            cd "$SMOKE_ROOT"
             set -eu
-            ROOT="$(git rev-parse --show-toplevel)"
-            cd "$ROOT"
-            SMOKE_LOG="$ROOT/runtime-smoke.log"
-            echo "smoke_pwd=$(pwd) smoke_log=$SMOKE_LOG" > "$SMOKE_LOG"
             APK="yoru-android/app/build/outputs/apk/tsuyu/release/app-tsuyu-release.apk"
             test -s "$APK"
             adb wait-for-device
