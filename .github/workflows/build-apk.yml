@@ -111,6 +111,54 @@ jobs:
           set -o pipefail
           gradle --no-daemon --stacktrace --console=plain :app:assembleTsuyuRelease 2>&1 | tee ../gradle-build.log
 
+      - name: Runtime smoke test on Android emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          emulator-options: -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect
+          disable-animations: true
+          script: |
+            set -euo pipefail
+            APK="yoru-android/app/build/outputs/apk/tsuyu/release/app-tsuyu-release.apk"
+            test -s "$APK"
+            adb install -r "$APK"
+            cat > /tmp/smoke.py <<'PY'
+            import json
+            titles = [
+              ("slime4", 59970, "О моём перерождении в слизь 4", "Tensei shitara Slime Datta Ken 4th Season", 2026),
+              ("onepiece", 21, "Ван-Пис", "One Piece", 1999),
+              ("solo2", 58567, "Поднятие уровня в одиночку 2", "Ore dake Level Up na Ken Season 2", 2025),
+              ("frieren", 52991, "Провожающая в последний путь Фрирен", "Sousou no Frieren", 2023),
+            ]
+            for key, mal, title, original, year in titles:
+              value = {"id": "shikimori:%d" % mal, "provider": "shikimori", "nativeId": str(mal), "title": title, "english": original, "year": year, "mId": mal, "episodesTotal": 24, "episodesAired": 1}
+              print(key + "=" + json.dumps(value, ensure_ascii=False, separators=(",", ":")))
+            PY
+            python3 /tmp/smoke.py | while IFS='=' read -r key json; do
+              echo "=== runtime $key ==="
+              adb shell am force-stop com.tsuyu.line
+              adb logcat -c
+              adb shell am start -n com.tsuyu.line/.PlayerActivity --es anime "$json" --ed episode 1 >/tmp/am-start-$key.txt
+              ready=0
+              for n in $(seq 1 60); do
+                sleep 1
+                xml="$(adb exec-out uiautomator dump /dev/tty 2>/dev/null || true)"
+                echo "$xml" | tail -c 5000
+                if echo "$xml" | grep -Eq 'Серия 1[^<]*(·|&|$)|Озвучка[^<]*'; then ready=1; break; fi
+                if echo "$xml" | grep -Eq 'Сейчас не удалось|Серия сейчас недоступна|Эта озвучка сейчас не открылась|Для этой серии пока нет доступного видео|не нашёл серии'; then
+                  echo "RUNTIME_FAILURE_$key" >&2
+                  echo "$xml" >&2
+                  adb logcat -d -v brief >&2
+                  exit 1
+                fi
+              done
+              test "$ready" = 1
+              echo "RUNTIME_PASS_$key"
+            done
+
       - name: Upload build diagnostics
         if: failure()
         uses: actions/upload-artifact@v4
