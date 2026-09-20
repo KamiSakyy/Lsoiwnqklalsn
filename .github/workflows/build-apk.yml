@@ -124,7 +124,9 @@ jobs:
             set -euo pipefail
             APK="yoru-android/app/build/outputs/apk/tsuyu/release/app-tsuyu-release.apk"
             test -s "$APK"
+            adb wait-for-device
             adb install -r "$APK"
+            : > runtime-smoke.log
             cat > /tmp/smoke.py <<'PY'
             import json
             titles = [
@@ -138,25 +140,29 @@ jobs:
               print(key + "=" + json.dumps(value, ensure_ascii=False, separators=(",", ":")))
             PY
             python3 /tmp/smoke.py | while IFS='=' read -r key json; do
-              echo "=== runtime $key ==="
+              echo "=== runtime $key ===" | tee -a runtime-smoke.log
               adb shell am force-stop com.tsuyu.line
               adb logcat -c
-              adb shell am start -n com.tsuyu.line/.PlayerActivity --es anime "$json" --ed episode 1 >/tmp/am-start-$key.txt
-              ready=0
-              for n in $(seq 1 60); do
+              adb shell am start -n com.tsuyu.line/.PlayerActivity --es anime "$json" --ed episode 1 2>&1 | tee -a runtime-smoke.log
+              pass=0
+              for n in $(seq 1 90); do
                 sleep 1
-                xml="$(adb exec-out uiautomator dump /dev/tty 2>/dev/null || true)"
-                echo "$xml" | tail -c 5000
-                if echo "$xml" | grep -Eq 'Серия 1[^<]*(·|&|$)|Озвучка[^<]*'; then ready=1; break; fi
-                if echo "$xml" | grep -Eq 'Сейчас не удалось|Серия сейчас недоступна|Эта озвучка сейчас не открылась|Для этой серии пока нет доступного видео|не нашёл серии'; then
-                  echo "RUNTIME_FAILURE_$key" >&2
-                  echo "$xml" >&2
-                  adb logcat -d -v brief >&2
-                  exit 1
+                runtime_log="$(adb logcat -d -s TsuyuRuntime:I '*:S' 2>/dev/null || true)"
+                printf '%s\n' "$runtime_log" > /tmp/runtime-$key.log
+                cat /tmp/runtime-$key.log >> runtime-smoke.log
+                if echo "$runtime_log" | grep -Eq 'PLAYBACK_READY .*episodes=[1-9][0-9]* .*voices_ep1=[1-9][0-9]*'; then
+                  if echo "$runtime_log" | grep -q 'MEDIA_READY'; then pass=1; break; fi
+                fi
+                if adb shell dumpsys activity activities 2>/dev/null | grep -q 'com.tsuyu.line/.PlayerActivity'; then :; else
+                  echo "Activity exited before runtime-ready for $key" | tee -a runtime-smoke.log
                 fi
               done
-              test "$ready" = 1
-              echo "RUNTIME_PASS_$key"
+              if [ "$pass" -ne 1 ]; then
+                echo "RUNTIME_FAILURE_$key" | tee -a runtime-smoke.log >&2
+                adb logcat -d -v brief | tail -n 400 | tee -a runtime-smoke.log >&2 || true
+                exit 1
+              fi
+              echo "RUNTIME_PASS_$key" | tee -a runtime-smoke.log
             done
 
       - name: Upload build diagnostics
@@ -164,7 +170,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: tsuyu-build-diagnostics
-          path: gradle-build.log
+          path: |
+            gradle-build.log
+            runtime-smoke.log
           if-no-files-found: warn
           retention-days: 3
 
