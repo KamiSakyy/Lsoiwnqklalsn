@@ -1,0 +1,602 @@
+smoke_pwd=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn smoke_root=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn smoke_log=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn/runtime-smoke.log
+SMOKE_SCRIPT_FAILURE rc=1 pwd=/home/runner/work/Lsoiwnqklalsn/Lsoiwnqklalsn
+I/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.incident.IncidentCompanionService
+D/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.incident.IncidentCompanionService took to complete: 0ms
+I/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.MmsServiceBroker
+D/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.MmsServiceBroker took to complete: 0ms
+I/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.autofill.AutofillManagerService
+D/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.autofill.AutofillManagerService took to complete: 0ms
+I/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.clipboard.ClipboardService
+D/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.clipboard.ClipboardService took to complete: 0ms
+I/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.appbinding.AppBindingService$Lifecycle
+D/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.appbinding.AppBindingService$Lifecycle took to complete: 0ms
+I/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.policy.PermissionPolicyService
+D/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.policy.PermissionPolicyService took to complete: 0ms
+I/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.pm.StagingManager$Lifecycle
+D/SystemServerTimingAsync(  542): ssm.onUnlockedUser-0_com.android.server.pm.StagingManager$Lifecycle took to complete: 0ms
+D/SystemServerTimingAsync(  542): ssm.UnlockedUser-0 took to complete: 237ms
+W/ActivityManager(  542): UserLifecycleEvent 6 received without an active userJourneySession.
+W/VoiceInteractionManager(  542): no available voice interaction services found for user 0
+I/chatty  (  542): uid=1000(system) Binder:542_3 identical 5 lines
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+D/KeyguardViewMediator(  824): adjustStatusBarLocked: mShowing=false mOccluded=false isSecure=false force=false --> flags=0x0
+D/NetworkSecurityConfig( 1806): No Network Security Config specified, using platform default
+I/RecoverySystem(  542): No recovery log file
+I/BootReceiver(  542): No existing last log timestamp file /data/system/log-files.xml; starting empty
+I/Dialer  ( 2487): DialerExecutorModule.newThread - creating low priority thread
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/DropBoxManagerService(  542): add tag=SYSTEM_BOOT isTagEnabled=true flags=0x2
+W/VoiceInteractionManager(  542): no available voice interaction services found for user 0
+I/BootReceiver(  542): Copying audit failures to DropBox
+I/BootReceiver(  542): Checking for fsck errors
+I/BootReceiver(  542): fs_stat, partition:vdc stat:0x13
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/Dialer  ( 2487): VisualVoicemailUpdateTask.updateNotification - enter
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/InputReader(  542): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+V/AvrcpMediaPlayerList( 2268): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList( 2268): Name of package changed: com.android.settings
+I/RoleManagerService(  542): Granting default roles...
+W/Looper  (  542): Slow dispatch took 138ms android.fg h=android.os.Handler c=com.android.server.role.-$$Lambda$RoleManagerService$p0uu3WH3gz96-kAWnyu6IUHMtCg@133572e m=0
+W/Looper  (  542): Slow dispatch took 131ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@a34392d m=0
+W/Looper  (  542): Slow dispatch took 115ms android.fg h=android.os.Handler c=<recycled PooledLambda@f31c4b6> m=0
+W/Looper  (  542): Slow delivery took 242ms main h=android.os.Handler c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@7763e62 m=0
+I/Telecom (  542): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AF4
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+D/CarrierSvcBindHelper( 1164): No carrier app for: 0
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+E/system_server(  542): No package ID 7f found for ID 0x7f080271.
+E/system_server(  542): No package ID 7f found for ID 0x7f1212ec.
+E/system_server(  542): No package ID 7f found for ID 0x7f080270.
+E/system_server(  542): No package ID 7f found for ID 0x7f120592.
+W/Looper  (  542): Drained
+W/Looper  (  542): Slow dispatch took 474ms android.fg h=android.os.Handler c=<recycled PooledLambda@6262be4> m=0
+E/system_server(  542): No package ID 7f found for ID 0x7f08026f.
+E/system_server(  542): No package ID 7f found for ID 0x7f120c2b.
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+W/ModernMediaScanner( 1781): Failed to visit /system/media: java.nio.file.NoSuchFileException: /system/media
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+W/Looper  (  542): Slow delivery took 479ms android.fg h=android.os.Handler c=<recycled PooledLambda@6173c67> m=0
+W/Looper  (  542): Slow dispatch took 236ms android.fg h=android.os.Handler c=<recycled PooledLambda@6173c67> m=0
+W/VoiceInteractionManager(  542): no available voice interaction services found for user 0
+W/Looper  (  542): Drained
+W/Looper  (  542): Slow dispatch took 205ms android.fg h=android.os.Handler c=<recycled PooledLambda@845ddd5> m=0
+I/chatty  (  542): uid=1000(system) Binder:542_3 identical 1 line
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/Dialer  ( 2487): VisualVoicemailUpdateTask.updateNotification - no voicemails to notify about
+I/Dialer  ( 2487): VisualVoicemailNotifier.cancelAllVoicemailNotifications - enter
+W/Looper  (  542): Slow dispatch took 136ms android.fg h=android.os.Handler c=<recycled PooledLambda@daac4aa> m=0
+I/Dialer  ( 2487): VoicemailNotificationJobService.scheduleJob - job canceled
+I/Dialer  ( 2487): VisualVoicemailUpdateTask.scheduleTask - update successful
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/Telecom (  542): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AGE
+I/Telecom (  542): MissedCallNotifierImpl: reloadAfterBootComplete: user=0: TSBCR.oR@AGI
+I/Telecom (  542): MissedCallNotifierImpl: reloadAfterBootComplete: user=0: TSBCR.oR@AGI
+W/Looper  (  542): Slow dispatch took 120ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@e59f01b m=0
+D/CarrierConfigLoader( 1164): mHandler: 13 phoneId: 0
+D/CarrierConfigLoader( 1164): System unlocked
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+W/Looper  (  542): Slow dispatch took 311ms android.fg h=android.os.Handler c=<recycled PooledLambda@f11d1a6> m=0
+D/CarrierConfigLoader( 1164): mHandler: 7 phoneId: 0
+D/CarrierConfigLoader( 1164): File not found: /data/user_de/0/com.android.phone/files/carrierconfig-com.android.carrierconfig-override-89014103211118510720-1.xml
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+D/PackageManager(  542): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+D/PackageManager(  542): Clear ephemeral installer activity
+D/CarrierConfigLoader( 1164): Loaded config from XML. package=com.android.carrierconfig phoneId=0
+D/AlertReceiver( 2215): onReceive: a=android.intent.action.BOOT_COMPLETED Intent { act=android.intent.action.BOOT_COMPLETED flg=0x89000010 cmp=com.android.calendar/.alerts.AlertReceiver (has extras) }
+V/ShadeControllerImpl(  824): NotificationShadeWindow: com.android.systemui.statusbar.phone.NotificationShadeWindowView{dc402b3 I.E...... ......ID 0,0-1080,1920} canPanelBeCollapsed(): false
+D/CarrierConfigLoader( 1164): mHandler: 5 phoneId: 0
+W/Looper  (  542): Slow dispatch took 223ms android.fg h=android.os.Handler c=<recycled PooledLambda@4869d2c> m=0
+D/CompatibilityChangeReporter(  542): Compat change id reported: 135634846; UID 10112; state: DISABLED
+W/ActivityManager(  542): Slow operation: 68ms so far, now at startProcess: done starting proc!
+W/ActivityManager(  542): Slow operation: 54ms so far, now at startProcess: asking zygote to start proc
+D/CompatibilityChangeReporter(  542): Compat change id reported: 143937733; UID 10112; state: DISABLED
+W/system_server(  542): Long monitor contention with owner Binder:542_7 (654) at void com.android.server.am.ActivityManagerService.finishReceiver(android.os.IBinder, int, java.lang.String, android.os.Bundle, boolean, int)(ActivityManagerService.java:16858) waiters=0 in boolean com.android.server.am.ActivityManagerService.refContentProvider(android.os.IBinder, int, int) for 132ms
+D/Zygote  (  280): Forked child process 2638
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+D/CarrierConfigLoader( 1164): mHandler: 16 phoneId: 0
+D/CarrierConfigLoader( 1164): Broadcast CARRIER_CONFIG_CHANGED for phone 0 simApplicationState 10
+D/CarrierConfigLoader( 1164): Broadcast CARRIER_CONFIG_CHANGED for phone 0, subId=1
+I/MediaProvider( 1781): Scanned internal due to REASON_MOUNTED, found 0 items in 2353ms, 0 inserts 0 updates 0 deletes
+D/CarrierKeyDownloadManager( 1164): Carrier Config changed: android.telephony.action.CARRIER_CONFIG_CHANGED
+D/MultiSimSettingController( 1164): onCarrierConfigChanged phoneId 0 subId 1
+D/MultiSimSettingController( 1164): updateDefaults
+W/ActivityManager(  542): Slow operation: 255ms so far, now at startProcess: returned from zygote!
+D/MultiSimSettingController( 1164): [updateDefaultValues] change: 0
+I/MessagingApp( 2440): Carrier config changed. Reloading MMS config.
+W/android.camera( 2638): Unexpected CPU variant for X86 using defaults: x86_64
+W/ActivityManager(  542): Slow operation: 387ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  542): Slow operation: 388ms so far, now at startProcess: building log message
+I/ActivityManager(  542): Start proc 2638:com.android.camera2/u0a112 for broadcast {com.android.camera2/com.android.camera.SetActivitiesCameraReceiver}
+W/ActivityManager(  542): Slow operation: 388ms so far, now at startProcess: starting to update pids map
+D/CellBroadcastReceiver( 1746): onReceive Intent { act=android.telephony.action.CARRIER_CONFIG_CHANGED flg=0x15000010 cmp=com.android.cellbroadcastreceiver.module/com.android.cellbroadcastreceiver.CellBroadcastReceiver (has extras) }
+D/CellBroadcastReceiver( 1746): initializeSharedPreference
+D/CellBroadcastReceiver( 1746): Skip setting default values of shared preference.
+D/CellBroadcastReceiver( 1746): Default interval 2 did not change.
+W/ActivityManager(  542): Slow operation: 389ms so far, now at startProcess: done updating pids map
+D/CellBroadcastReceiver( 1746): disable launcher activity: com.android.cellbroadcastreceiver.CellBroadcastListLauncherActivity
+W/Looper  (  542): Slow dispatch took 229ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@2fcb42e m=0
+D/WifiService(  542): ACTION_CARRIER_CONFIG_CHANGED, active subId: 1
+I/adbd    (  387): jdwp connection from 2638
+W/Looper  (  542): Slow dispatch took 482ms android.fg h=android.os.Handler c=<recycled PooledLambda@e12ebcf> m=0
+D/CellBroadcastReceiver( 1746): Start Cell Broadcast configuration.
+W/Looper  (  542): Slow delivery took 234ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@a136f60 m=0
+W/Looper  (  542): Slow dispatch took 215ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@a136f60 m=0
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+D/CellBroadcastConfigService( 1746): Enable CellBroadcast on sub 1
+I/Telecom (  542): PhoneAccountRegistrar: getSimCallManager: SimCallManager for subId 1 queried, returning: null: TSI.gSCMFU@AGc
+W/Looper  (  542): Slow dispatch took 118ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@6ff20d5 m=0
+W/ActivityManager(  542): Slow operation: 137ms so far, now at attachApplicationLocked: after sendPendingBroadcastsLocked
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+W/Looper  (  542): Slow dispatch took 374ms android.fg h=android.os.Handler c=<recycled PooledLambda@d5fdd8e> m=0
+D/ApplicationLoaders( 2638): Returning zygote-cached class loader: /system/framework/android.test.base.jar
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/android.camera( 2638): The ClassLoaderContext is a special shared library.
+D/CarrierKeyDownloadManager( 1164): Carrier not enabled or invalid values
+D/CarrierKeyDownloadManager( 1164): Cleaning up existing renewal alarms
+W/ModernMediaScanner( 1781): Failed to visit /oem/media: java.nio.file.NoSuchFileException: /oem/media
+I/MediaProvider( 1781): Scanned internal due to REASON_MOUNTED, found 0 items in 25ms, 0 inserts 0 updates 0 deletes
+I/android.camera( 2638): The ClassLoaderContext is a special shared library.
+D/nativeloader( 2638): classloader namespace configured for unbundled product apk. library_path=/product/app/Camera2/lib/x86_64:/product/app/Camera2/Camera2.apk!/lib/x86_64:/product/lib64:/system/product/lib64
+W/Looper  (  542): Slow dispatch took 281ms android.fg h=android.os.Handler c=<recycled PooledLambda@866d4d0> m=0
+D/AutofillManagerService(  542): Close system dialogs
+I/PermissionControllerServiceImpl(  844): Updating user sensitive for uid 1000
+W/Looper  (  542): Slow dispatch took 577ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@f2ff469 m=0
+W/Looper  (  542): Slow dispatch took 124ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=null m=31
+V/AvrcpMediaPlayerList( 2268): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList( 2268): Name of package changed: com.android.calendar
+I/InputReader(  542): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+I/ndroid.setting( 2612): Waiting for a blocking GC ProfileSaver
+I/ndroid.setting( 2612): WaitForGcToComplete blocked ProfileSaver on ClassLinker for 44.590ms
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+W/system_server(  542): Long monitor contention with owner Binder:542_11 (1861) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=2 in android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int) for 181ms
+W/system_server(  542): Long monitor contention with owner Binder:542_11 (1861) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=8 in android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int) for 173ms
+W/system_server(  542): Long monitor contention with owner Binder:542_11 (1861) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=13 in android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int) for 104ms
+W/Looper  (  542): Slow dispatch took 255ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@929358b m=0
+I/Telecom (  542): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AGk
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+D/NetworkSecurityConfig( 2638): No Network Security Config specified, using platform default
+D/NetworkSecurityConfig( 2638): No Network Security Config specified, using platform default
+I/system_server(  542): Background young concurrent copying GC freed 155890(8523KB) AllocSpace objects, 57(3820KB) LOS objects, 47% free, 11MB/22MB, paused 1.818ms total 2.725s
+V/CAM_Profiler( 2638): [  0.000ms][ui] GUARD: CameraApp onCreate() - START
+V/CAM_Profiler( 2638): [  0.000ms][ui] GUARD: FirstRunDetector getTimeOfFirstRun - START
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+W/Looper  (  542): Drained
+I/Choreographer( 1048): Skipped 31 frames!  The application may be doing too much work on its main thread.
+W/VoiceInteractionManager(  542): no available voice interaction services found for user 0
+I/CAM_Profiler( 2638): [201.808ms][ui] GUARD: FirstRunDetector getTimeOfFirstRun - [201.808ms] PreferenceManager.getDefaultSharedPreferences
+I/CAM_Profiler( 2638): [282.699ms][ui] GUARD: FirstRunDetector getTimeOfFirstRun - [80.891ms] preferences.getLong
+V/CAM_Profiler( 2638): [284.809ms][ui] GUARD: FirstRunDetector getTimeOfFirstRun - [ 2.110ms] getSharedPreferences
+E/GnssLocationProvider(  542): IGnssConfiguration setEsExtensionSec() failed.
+E/GnssConfiguration(  542): Unable to set ES_EXTENSION_SEC: 0
+W/Looper  (  542): Slow dispatch took 1344ms android.fg h=com.android.server.location.gnss.GnssLocationProvider$ProviderHandler c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@758f455 m=0
+I/Telephony( 1164): Carrier-config changed, checking for phone account updates.
+I/CAM_Profiler( 2638): [511.562ms][ui] GUARD: FirstRunDetector getTimeOfFirstRun - [226.753ms] preferences.edit()
+I/CAM_Profiler( 2638): [512.416ms][ui] GUARD: FirstRunDetector getTimeOfFirstRun - STOP
+I/CAM_Profiler( 2638): [555.262ms][ui] GUARD: CameraApp onCreate() - [555.262ms] initializeTimeOfFirstRun
+V/CAM_Profiler( 2638): [556.354ms][ui] GUARD: CameraApp onCreate() - [ 1.092ms] UsageStatistics.initialize
+D/Telephony( 1164): TelecomAccountRegistry: handleCarrierConfigChange: subId=1, accountSubId=1
+W/system_server(  542): Long monitor contention with owner android.fg (586) at int com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.getApplicationEnabledState(java.lang.String, int)(PackageManagerService.java:24933) waiters=2 in android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int) for 141ms
+I/RoleManagerService(  542): Granting default roles...
+W/Looper  (  542): Slow dispatch took 208ms android.fg h=android.os.Handler c=com.android.server.role.-$$Lambda$RoleManagerService$p0uu3WH3gz96-kAWnyu6IUHMtCg@133572e m=0
+I/PermissionControllerServiceImpl(  844): Updating user sensitive for uid 10108
+I/CAM_Profiler( 2638): [767.664ms][ui] GUARD: CameraApp onCreate() - [211.310ms] clearNotifications
+I/CAM_Profiler( 2638): [767.664ms][ui] GUARD: CameraApp onCreate() - STOP
+W/Looper  (  542): Drained
+W/CAM_Log ( 2638): Tag SetActivitiesCameraReceiver is 8 chars longer than limit.
+W/ServiceManager(  412): Permission failure: android.permission.SYSTEM_CAMERA from uid=10112 pid=2638
+I/CAM_SetActivitiesCamera( 2638): number of camera: 1
+I/CAM_SetActivitiesCamera( 2638): component state is 1
+D/PackageManager(  542): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+D/PackageManager(  542): Clear ephemeral installer activity
+W/MessagingApp( 2440): canonicalizeMccMnc: invalid mccmnc:null ,null
+D/CompatibilityChangeReporter(  542): Compat change id reported: 135634846; UID 10098; state: DISABLED
+D/CompatibilityChangeReporter(  542): Compat change id reported: 143937733; UID 10098; state: DISABLED
+D/Telephony( 1164): isEmergencyPreferredAccount: subId=1, activeData=1
+D/Telephony( 1164): isEmergencyPreferredAccount: Device does not require preference.
+D/Zygote  (  280): Forked child process 2661
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+W/ndroid.contact( 2661): Unexpected CPU variant for X86 using defaults: x86_64
+W/ActivityManager(  542): Slow operation: 346ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  542): Slow operation: 347ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  542): Slow operation: 348ms so far, now at startProcess: building log message
+I/ActivityManager(  542): Start proc 2661:com.android.contacts/u0a98 for broadcast {com.android.contacts/com.android.contacts.interactions.OnBootOrUpgradeReceiver}
+W/ActivityManager(  542): Slow operation: 348ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  542): Slow operation: 350ms so far, now at startProcess: done updating pids map
+I/adbd    (  387): jdwp connection from 2661
+I/Telephony( 1164): isRttCurrentlySupported -- regular acct, hasVoiceAvailability: false
+I/Telephony( 1164):  isRttSupported: false
+I/Telephony( 1164):  isRoaming: false
+I/Telephony( 1164):  isOnWfc: false
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+W/ActivityManager(  542): Slow operation: 73ms so far, now at attachApplicationLocked: after mServices.attachApplicationLocked
+W/ActivityManager(  542): Slow operation: 82ms so far, now at attachApplicationLocked: after sendPendingBroadcastsLocked
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/MessagingApp( 2440): Carrier configs loaded: Bundle[{httpSocketTimeout=60000, aliasMinChars=2, smsToMmsTextThreshold=-1, enableSMSDeliveryReports=true, maxMessageTextSize=-1, supportMmsContentDisposition=true, enabledTransID=false, aliasEnabled=false, supportHttpCharsetHeader=false, allowAttachAudio=true, smsToMmsTextLengthThreshold=-1, recipientLimit=2147483647, uaProfTagName=x-wap-profile, aliasMaxChars=48, maxImageHeight=1944, enableMMSDeliveryReports=false, userAgent=, mmsCloseConnection=true, config_cellBroadcastAppLinks=true, maxSubjectLength=40, httpParams=, enableGroupMms=true, emailGatewayNumber=, maxMessageSize=1048576, naiSuffix=, enableMMSReadReports=false, maxImageWidth=2592, uaProfUrl=, enabledMMS=false, enabledNotifyWapMMSC=false, sendMultipartSmsAsSeparateMessages=false, enableMultipartSMS=true}] from resources+system for subId=1
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+D/ApplicationLoaders( 2661): Returning zygote-cached class loader: /system/framework/android.test.base.jar
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/ndroid.contact( 2661): The ClassLoaderContext is a special shared library.
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+D/nativeloader( 2661): classloader namespace configured for unbundled product apk. library_path=/product/priv-app/Contacts/lib/x86_64:/product/lib64:/system/product/lib64
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+V/AvrcpMediaPlayerList( 2268): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList( 2268): Name of package changed: com.android.camera2
+I/InputReader(  542): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+W/system_server(  542): Long monitor contention with owner android.fg (586) at android.util.ArraySet com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.getDisabledComponents(java.lang.String, int)(PackageManagerService.java:24921) waiters=2 in android.content.pm.ServiceInfo com.android.server.pm.PackageManagerService.getServiceInfo(android.content.ComponentName, int, int) for 116ms
+W/Looper  (  542): Slow dispatch took 135ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@9384e8f m=0
+D/NetworkSecurityConfig( 2661): No Network Security Config specified, using platform default
+I/Telecom (  542): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AGo
+I/RoleManagerService(  542): Granting default roles...
+W/Looper  (  542): Slow dispatch took 170ms android.fg h=android.os.Handler c=com.android.server.role.-$$Lambda$RoleManagerService$p0uu3WH3gz96-kAWnyu6IUHMtCg@133572e m=0
+D/NetworkSecurityConfig( 2661): No Network Security Config specified, using platform default
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/PermissionControllerServiceImpl(  844): Updating user sensitive for uid 10112
+W/Looper  (  542): Slow dispatch took 145ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=1
+I/Telephony( 1164): reRegisterPstnPhoneAccount: subId: 1 - no change
+D/OtaspSimStateReceiver( 1164): Received intent: android.telephony.action.CARRIER_CONFIG_CHANGED
+W/VoiceInteractionManager(  542): no available voice interaction services found for user 0
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/AlarmClock( 1377): AlarmInitReceiver android.intent.action.BOOT_COMPLETED
+D/OtaspSimStateReceiver( 1164): otasp activation not needed: no supported carrier
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/AlarmClock( 1377): Fixing alarm instances
+V/AlarmClock( 1377): AlarmInitReceiver finished
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+W/ActivityManager(  542): Slow operation: 66ms so far, now at getContentProviderImpl: after updateOomAdj
+W/ActivityManager(  542): Slow operation: 66ms so far, now at getContentProviderImpl: done!
+I/Dialer  ( 2487): VvmOmtpService - onBoot
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+D/CompatibilityChangeReporter(  542): Compat change id reported: 135634846; UID 1000; state: DISABLED
+D/CarrierSvcBindHelper( 1164): No carrier app for: 0
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+W/Looper  (  542): Slow dispatch took 544ms android.fg h=android.os.Handler c=<recycled PooledLambda@6262be4> m=0
+W/Looper  (  542): Slow delivery took 544ms android.fg h=android.os.Handler c=<recycled PooledLambda@29890a5> m=0
+W/Looper  (  542): Slow dispatch took 104ms android.fg h=android.os.Handler c=<recycled PooledLambda@29890a5> m=0
+D/Zygote  (  280): Forked child process 2683
+W/ActivityManager(  542): Slow operation: 426ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  542): Slow operation: 431ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  542): Slow operation: 432ms so far, now at startProcess: building log message
+I/ActivityManager(  542): Start proc 2683:com.android.dynsystem/1000 for broadcast {com.android.dynsystem/com.android.dynsystem.BootCompletedReceiver}
+W/ActivityManager(  542): Slow operation: 432ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  542): Slow operation: 433ms so far, now at startProcess: done updating pids map
+W/droid.dynsyste( 2683): Unexpected CPU variant for X86 using defaults: x86_64
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/adbd    (  387): jdwp connection from 2683
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+W/ActivityManager(  542): Slow operation: 58ms so far, now at attachApplicationLocked: immediately after bindApplication
+W/ActivityManager(  542): Slow operation: 97ms so far, now at attachApplicationLocked: after updateLruProcessLocked
+W/ActivityManager(  542): Slow operation: 102ms so far, now at attachApplicationLocked: after mServices.attachApplicationLocked
+W/ActivityManager(  542): Slow operation: 121ms so far, now at attachApplicationLocked: after sendPendingBroadcastsLocked
+W/Looper  (  542): Slow dispatch took 503ms android.fg h=android.os.Handler c=<recycled PooledLambda@24e8940> m=0
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/droid.dynsyste( 2683): The ClassLoaderContext is a special shared library.
+W/Looper  (  542): Slow dispatch took 174ms android.fg h=android.os.Handler c=<recycled PooledLambda@8da082e> m=0
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/system_server(  542): The ClassLoaderContext is a special shared library.
+I/BackgroundDexOptService(  542): Pinning optimized code {android}
+D/IorapForwardingService(  542): onPackagesUpdated: android
+D/NetworkSecurityConfig( 2683): No Network Security Config specified, using platform default
+W/Looper  (  542): Slow dispatch took 274ms android.fg h=android.os.Handler c=<recycled PooledLambda@27a805> m=0
+W/Looper  (  542): Slow dispatch took 115ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=3
+D/NetworkSecurityConfig( 2683): No Network Security Config specified, using platform default
+E/IPCThreadState(  420): binder thread pool (1 threads) starved for 142 ms
+D/KeyguardClockSwitch(  824): Updating clock: 259
+W/ActivityManager(  542): Slow operation: 80ms so far, now at startProcess: done creating new process record
+W/ActivityManager(  542): Slow operation: 80ms so far, now at startProcess: stepping in to startProcess
+D/CompatibilityChangeReporter(  542): Compat change id reported: 135634846; UID 10111; state: DISABLED
+W/ActivityManager(  542): Slow operation: 90ms so far, now at startProcess: done starting proc!
+D/CompatibilityChangeReporter(  542): Compat change id reported: 143937733; UID 10111; state: DISABLED
+I/m.android.phon( 1164): Background young concurrent copying GC freed 28962(2382KB) AllocSpace objects, 14(472KB) LOS objects, 49% free, 3107KB/6203KB, paused 16.581ms total 474.708ms
+W/Looper  (  542): Slow dispatch took 413ms android.fg h=android.os.Handler c=<recycled PooledLambda@373f659> m=0
+I/ActivityManager(  542): Killing 2180:com.android.localtransport/1000 (adj 985): empty #17
+I/ssioncontrolle(  844): Background young concurrent copying GC freed 12446(695KB) AllocSpace objects, 0(0B) LOS objects, 49% free, 2566KB/5049KB, paused 235us total 367.653ms
+W/Looper  (  542): Slow dispatch took 364ms android.fg h=android.os.Handler c=<recycled PooledLambda@3b6a91c> m=0
+D/Zygote  (  280): Forked child process 2702
+D/CarrierSvcBindHelper( 1164): No carrier app for: 0
+W/droid.gallery3( 2702): Unexpected CPU variant for X86 using defaults: x86_64
+W/ActivityManager(  542): Slow operation: 532ms so far, now at startProcess: returned from zygote!
+I/adbd    (  387): jdwp connection from 2702
+W/ActivityManager(  542): Slow operation: 552ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  542): Slow operation: 553ms so far, now at startProcess: building log message
+I/ActivityManager(  542): Start proc 2702:com.android.gallery3d/u0a111 for broadcast {com.android.gallery3d/com.android.camera.DisableCameraReceiver}
+W/ActivityManager(  542): Slow operation: 553ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  542): Slow operation: 554ms so far, now at startProcess: done updating pids map
+I/Zygote  (  280): Process 2180 exited due to signal 9 (Killed)
+W/ActivityManager(  542): Slow operation: 73ms so far, now at attachApplicationLocked: after sendPendingBroadcastsLocked
+I/libprocessgroup(  542): Successfully killed process cgroup uid 1000 pid 2180 in 630ms
+W/Looper  (  542): Slow dispatch took 323ms android.fg h=android.os.Handler c=<recycled PooledLambda@5797f2b> m=0
+I/VvmSimStateTracker( 1164): android.telephony.action.CARRIER_CONFIG_CHANGED
+D/ApplicationLoaders( 2702): Returning zygote-cached class loader: /system/framework/android.test.base.jar
+I/droid.gallery3( 2702): The ClassLoaderContext is a special shared library.
+I/VvmSimStateTracker( 1164): Service connected on ComponentInfo{com.android.phone/com.android.services.telephony.TelephonyConnectionService}, ***, UserHandle{0}
+I/droid.gallery3( 2702): The ClassLoaderContext is a special shared library.
+D/nativeloader( 2702): classloader namespace configured for unbundled product apk. library_path=/product/app/Gallery2/lib/x86_64:/product/app/Gallery2/Gallery2.apk!/lib/x86_64:/product/lib64:/system/product/lib64
+W/Looper  (  542): Slow dispatch took 297ms android.fg h=android.os.Handler c=<recycled PooledLambda@9212adf> m=0
+D/NetworkSecurityConfig( 2702): No Network Security Config specified, using platform default
+W/Looper  (  542): Slow dispatch took 322ms android.fg h=android.os.Handler c=<recycled PooledLambda@373f659> m=0
+D/NetworkSecurityConfig( 2702): No Network Security Config specified, using platform default
+I/RemoteVvmTaskManager( 1164): Binding to ComponentInfo{com.android.dialer/com.android.voicemail.impl.OmtpService}
+W/ServiceManager(  412): Permission failure: android.permission.SYSTEM_CAMERA from uid=10111 pid=2702
+W/ServiceManager(  412): Permission failure: android.permission.SYSTEM_CAMERA from uid=10111 pid=2702
+W/ServiceManager(  412): Permission failure: android.permission.SYSTEM_CAMERA from uid=10111 pid=2702
+W/ServiceManager(  412): Permission failure: android.permission.SYSTEM_CAMERA from uid=10111 pid=2702
+I/G:DisableCameraReceiver( 2702): back camera found: 0
+D/PackageManager(  542): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+D/PackageManager(  542): Clear ephemeral installer activity
+I/SystemBroadcastReceiver( 1325): Boot has been completed
+I/SystemBroadcastReceiver( 1325): toggleAppIcon() : FLAG_SYSTEM = true
+D/PackageManager(  542): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+D/PackageManager(  542): Clear ephemeral installer activity
+D/TelephonyProvider( 1164): subIdString = 1 subId = 1
+I/ActivityManager(  542): Killing 1862:com.android.keychain/1000 (adj 985): empty #17
+W/Looper  (  542): Slow dispatch took 131ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=null m=31
+W/Looper  (  542): Slow dispatch took 417ms android.fg h=android.os.Handler c=<recycled PooledLambda@8da082e> m=0
+I/Zygote  (  280): Process 1862 exited due to signal 9 (Killed)
+I/libprocessgroup(  542): Successfully killed process cgroup uid 1000 pid 1862 in 160ms
+I/Dialer  ( 2487): VvmOmtpService - onCellServiceConnected
+W/Looper  (  542): Slow dispatch took 263ms android.fg h=android.os.Handler c=<recycled PooledLambda@27a805> m=0
+D/NetworkSecurityConfig( 1956): No Network Security Config specified, using platform default
+D/CompatibilityChangeReporter(  542): Compat change id reported: 135634846; UID 1027; state: DISABLED
+W/Looper  (  542): Slow dispatch took 291ms android.fg h=android.os.Handler c=<recycled PooledLambda@4854405> m=0
+D/Zygote  (  280): Forked child process 2721
+W/com.android.nf( 2721): Unexpected CPU variant for X86 using defaults: x86_64
+I/adbd    (  387): jdwp connection from 2721
+W/Looper  (  542): Slow dispatch took 371ms android.fg h=android.os.Handler c=<recycled PooledLambda@24e8940> m=0
+W/Looper  (  542): Drained
+W/ActivityManager(  542): Slow operation: 448ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  542): Slow operation: 465ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  542): Slow operation: 465ms so far, now at startProcess: building log message
+I/ActivityManager(  542): Start proc 2721:com.android.nfc/1027 for broadcast {com.android.nfc/com.android.nfc.NfcBootCompletedReceiver}
+W/ActivityManager(  542): Slow operation: 466ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  542): Slow operation: 466ms so far, now at startProcess: done updating pids map
+I/InputReader(  542): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+V/AvrcpMediaPlayerList( 2268): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList( 2268): Name of package changed: com.android.gallery3d
+I/RoleManagerService(  542): Granting default roles...
+W/Looper  (  542): Slow dispatch took 180ms android.fg h=android.os.Handler c=com.android.server.role.-$$Lambda$RoleManagerService$p0uu3WH3gz96-kAWnyu6IUHMtCg@133572e m=0
+W/ActivityManager(  542): Slow operation: 52ms so far, now at attachApplicationLocked: before bindApplication
+W/ActivityManager(  542): Slow operation: 65ms so far, now at attachApplicationLocked: immediately before bindApplication
+W/ActivityManager(  542): Slow operation: 91ms so far, now at attachApplicationLocked: immediately after bindApplication
+W/ActivityManager(  542): Slow operation: 92ms so far, now at attachApplicationLocked: after updateLruProcessLocked
+W/ActivityManager(  542): Slow operation: 117ms so far, now at attachApplicationLocked: after mServices.attachApplicationLocked
+W/ActivityManager(  542): Slow operation: 147ms so far, now at attachApplicationLocked: after sendPendingBroadcastsLocked
+W/Looper  (  542): Slow dispatch took 256ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@22283c0 m=0
+W/Looper  (  542): Slow delivery took 342ms main h=android.os.Handler c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@356c8f9 m=0
+I/PermissionControllerServiceImpl(  844): Updating user sensitive for uid 10111
+I/Telecom (  542): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AHA
+W/VoiceInteractionManager(  542): no available voice interaction services found for user 0
+V/AvrcpMediaPlayerList( 2268): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+I/InputReader(  542): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+D/AvrcpMediaPlayerList( 2268): Name of package changed: com.android.inputmethod.latin
+I/com.android.nf( 2721): The ClassLoaderContext is a special shared library.
+W/Looper  (  542): Slow dispatch took 267ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=1
+I/Telecom (  542): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AHE
+I/droid.messagin( 2440): ThreadFlipBegin blocked for 648.958ms
+D/CarrierSvcBindHelper( 1164): No carrier app for: 0
+I/m.android.phon( 1164): JIT allocated 75KB for compiled code of boolean com.android.internal.telephony.ITelephony$Stub.onTransact(int, android.os.Parcel, android.os.Parcel, int)
+I/m.android.phon( 1164): Compiler allocated 4900KB to compile boolean com.android.internal.telephony.ITelephony$Stub.onTransact(int, android.os.Parcel, android.os.Parcel, int)
+W/Looper  (  542): Slow dispatch took 815ms android.fg h=android.os.Handler c=<recycled PooledLambda@845ddd5> m=0
+D/NetworkSecurityConfig( 2721): No Network Security Config specified, using platform default
+W/Looper  (  542): Drained
+W/Looper  (  542): Slow delivery took 821ms android.fg h=android.os.Handler c=<recycled PooledLambda@5797f2b> m=0
+W/Looper  (  542): Slow dispatch took 235ms android.fg h=android.os.Handler c=<recycled PooledLambda@5797f2b> m=0
+W/VoiceInteractionManager(  542): no available voice interaction services found for user 0
+D/NetworkSecurityConfig( 2721): No Network Security Config specified, using platform default
+I/InputAttributes( 1325): InputType.TYPE_NULL is specified
+I/android.hardware.vibrator-service.example(  315): Vibrator reporting capabilities
+W/Looper  (  542): Slow dispatch took 299ms android.fg h=android.os.Handler c=<recycled PooledLambda@6262be4> m=0
+D/PackageManager(  542): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+D/PackageManager(  542): Clear ephemeral installer activity
+D/CarrierSvcBindHelper( 1164): No carrier app for: 0
+W/Looper  (  542): Slow dispatch took 241ms android.fg h=android.os.Handler c=<recycled PooledLambda@3b6a91c> m=0
+W/MessagingAppDataModel( 2440): Used 2315ms for UpdateMessageNotificationAction#executeAction
+I/ActivityManager(  542): Killing 2721:com.android.nfc/1027 (adj 0): change com.android.nfc
+W/system_server(  542): Long monitor contention with owner PackageManager (615) at int com.android.server.am.ActivityManagerService$LocalService.broadcastIntent(android.content.Intent, android.content.IIntentReceiver, java.lang.String[], boolean, int, int[])(ActivityManagerService.java:19454) waiters=0 in void com.android.server.am.ActivityManagerService.finishReceiver(android.os.IBinder, int, java.lang.String, android.os.Bundle, boolean, int) for 351ms
+I/InputReader(  542): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+V/AvrcpMediaPlayerList( 2268): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList( 2268): Name of package changed: com.android.nfc
+D/CompatibilityChangeReporter(  542): Compat change id reported: 135634846; UID 10097; state: DISABLED
+D/CompatibilityChangeReporter(  542): Compat change id reported: 143937733; UID 10097; state: ENABLED
+W/Looper  (  542): Slow dispatch took 177ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=null m=53
+W/Looper  (  542): Slow dispatch took 119ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=null m=31
+W/Looper  (  542): Slow dispatch took 211ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=5
+W/Looper  (  542): Slow delivery took 217ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@cf5887f m=0
+W/Looper  (  542): Slow dispatch took 501ms android.fg h=android.os.Handler c=<recycled PooledLambda@29890a5> m=0
+D/WifiService(  542): Remove settings for package:com.android.nfc
+D/WifiConfigManager(  542): Remove all networks for app ApplicationInfo{70b7895 com.android.nfc}
+I/Telecom (  542): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AHI
+D/Zygote  (  280): Forked child process 2744
+I/Zygote  (  280): Process 2721 exited due to signal 9 (Killed)
+W/ActivityManager(  542): Slow operation: 429ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  542): Slow operation: 454ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  542): Slow operation: 469ms so far, now at startProcess: building log message
+I/ActivityManager(  542): Start proc 2744:com.android.onetimeinitializer/u0a97 for broadcast {com.android.onetimeinitializer/com.android.onetimeinitializer.OneTimeInitializerReceiver}
+W/ActivityManager(  542): Slow operation: 470ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  542): Slow operation: 470ms so far, now at startProcess: done updating pids map
+W/Looper  (  542): Slow dispatch took 322ms android.fg h=android.os.Handler c=<recycled PooledLambda@373f659> m=0
+W/timeinitialize( 2744): Unexpected CPU variant for X86 using defaults: x86_64
+I/libprocessgroup(  542): Successfully killed process cgroup uid 1027 pid 2721 in 502ms
+I/adbd    (  387): jdwp connection from 2744
+D/ModelWriter( 1048): removing items from db 
+D/ModelWriter( 1048): java.lang.Exception
+D/ModelWriter( 1048): 	at com.android.launcher3.model.ModelWriter.deleteItemsFromDatabase(ModelWriter.java:272)
+D/ModelWriter( 1048): 	at com.android.launcher3.model.ModelWriter.deleteItemsFromDatabase(ModelWriter.java:262)
+D/ModelWriter( 1048): 	at com.android.launcher3.model.BaseModelUpdateTask.deleteAndBindComponentsRemoved(BaseModelUpdateTask.java:111)
+D/ModelWriter( 1048): 	at com.android.launcher3.model.PackageUpdatedTask.execute(PackageUpdatedTask.java:323)
+D/ModelWriter( 1048): 	at com.android.launcher3.model.BaseModelUpdateTask.run(BaseModelUpdateTask.java:67)
+D/ModelWriter( 1048): 	at android.os.Handler.handleCallback(Handler.java:938)
+D/ModelWriter( 1048): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/ModelWriter( 1048): 	at android.os.Looper.loop(Looper.java:223)
+D/ModelWriter( 1048): 	at android.os.HandlerThread.run(HandlerThread.java:67)
+D/WifiConfigStore(  542): Writing to stores completed in 263 ms.
+I/PasspointManager(  542): No app ops listener found for com.android.nfc
+W/ActivityManager(  542): Slow operation: 60ms so far, now at attachApplicationLocked: after mServices.attachApplicationLocked
+I/droid.gallery3( 2702): Waiting for a blocking GC ProfileSaver
+W/ActivityManager(  542): Slow operation: 102ms so far, now at attachApplicationLocked: after sendPendingBroadcastsLocked
+W/Looper  (  542): Drained
+W/VoiceInteractionManager(  542): no available voice interaction services found for user 0
+W/Looper  (  542): Slow dispatch took 453ms android.fg h=android.os.Handler c=<recycled PooledLambda@729c949> m=0
+I/droid.gallery3( 2702): WaitForGcToComplete blocked ProfileSaver on RunEmptyCheckpoint for 83.787ms
+D/CarrierSvcBindHelper( 1164): No carrier app for: 0
+D/ModelWriter( 1048): removing items from db 
+D/ModelWriter( 1048): java.lang.Exception
+D/ModelWriter( 1048): 	at com.android.launcher3.model.ModelWriter.deleteItemsFromDatabase(ModelWriter.java:272)
+D/ModelWriter( 1048): 	at com.android.launcher3.model.ModelWriter.deleteItemsFromDatabase(ModelWriter.java:262)
+D/ModelWriter( 1048): 	at com.android.launcher3.model.BaseModelUpdateTask.deleteAndBindComponentsRemoved(BaseModelUpdateTask.java:111)
+D/ModelWriter( 1048): 	at com.android.launcher3.model.PackageUpdatedTask.execute(PackageUpdatedTask.java:323)
+D/ModelWriter( 1048): 	at com.android.launcher3.model.BaseModelUpdateTask.run(BaseModelUpdateTask.java:67)
+D/ModelWriter( 1048): 	at android.os.Handler.handleCallback(Handler.java:938)
+D/ModelWriter( 1048): 	at android.os.Handler.dispatchMessage(Handler.java:99)
+D/ModelWriter( 1048): 	at android.os.Looper.loop(Looper.java:223)
+D/ModelWriter( 1048): 	at android.os.HandlerThread.run(HandlerThread.java:67)
+W/Looper  (  542): Slow dispatch took 212ms android.fg h=android.os.Handler c=<recycled PooledLambda@2f8d43a> m=0
+I/ActivityManager(  542): Killing 2295:com.android.printspooler/u0a88 (adj 975): empty #17
+I/timeinitialize( 2744): The ClassLoaderContext is a special shared library.
+D/nativeloader( 2744): classloader namespace configured for unbundled product apk. library_path=/product/priv-app/OneTimeInitializer/lib/x86_64:/product/lib64:/system/product/lib64
+I/LatinIME( 1325): Timeout waiting for dictionary load
+W/Looper  (  542): Slow dispatch took 423ms android.fg h=android.os.Handler c=<recycled PooledLambda@dddfc68> m=0
+I/PermissionControllerServiceImpl(  844): Updating user sensitive for uid 10106
+D/NetworkSecurityConfig( 2744): No Network Security Config specified, using platform default
+I/RoleManagerService(  542): Granting default roles...
+W/Looper  (  542): Slow dispatch took 150ms android.fg h=android.os.Handler c=com.android.server.role.-$$Lambda$RoleManagerService$p0uu3WH3gz96-kAWnyu6IUHMtCg@133572e m=0
+D/NetworkSecurityConfig( 2744): No Network Security Config specified, using platform default
+V/OneTimeInitializerReceiver( 2744): OneTimeInitializerReceiver.onReceive
+W/Looper  (  542): Slow dispatch took 101ms android.fg h=android.os.Handler c=<recycled PooledLambda@130f5b2> m=0
+I/PermissionControllerServiceImpl(  844): Updating user sensitive for uid 1027
+I/OneTimeInitializer( 2744): Updating to version 1.
+E/ActivityThread( 2744): Failed to find provider info for com.android.launcher2.settings
+D/CompatibilityChangeReporter(  542): Compat change id reported: 135634846; UID 10070; state: DISABLED
+D/CompatibilityChangeReporter(  542): Compat change id reported: 143937733; UID 10070; state: ENABLED
+I/ActivityManager(  542): Killing 2393:com.android.music/u0a110 (adj 985): empty #17
+W/Looper  (  542): Slow dispatch took 200ms android.fg h=android.os.Handler c=<recycled PooledLambda@2066069> m=0
+D/Zygote  (  280): Forked child process 2766
+V/AvrcpMediaPlayerList( 2268): onActiveSessionsChanged: number of controllers: 0
+W/ackageinstalle( 2766): Unexpected CPU variant for X86 using defaults: x86_64
+I/Zygote  (  280): Process 2393 exited due to signal 9 (Killed)
+I/adbd    (  387): jdwp connection from 2766
+W/ActivityManager(  542): Slow operation: 316ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  542): Slow operation: 331ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  542): Slow operation: 332ms so far, now at startProcess: building log message
+I/ActivityManager(  542): Start proc 2766:com.android.packageinstaller/u0a70 for broadcast {com.android.packageinstaller/com.android.packageinstaller.TemporaryFileManager}
+W/ActivityManager(  542): Slow operation: 332ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  542): Slow operation: 333ms so far, now at startProcess: done updating pids map
+W/ActivityManager(  542): Slow operation: 56ms so far, now at attachApplicationLocked: after sendPendingBroadcastsLocked
+W/Looper  (  542): Slow dispatch took 313ms android.fg h=android.os.Handler c=<recycled PooledLambda@4854405> m=0
+W/Looper  (  542): Slow dispatch took 154ms android.fg h=android.os.Handler c=<recycled PooledLambda@98b4130> m=0
+I/Zygote  (  280): Process 2295 exited due to signal 9 (Killed)
+I/ackageinstalle( 2766): The ClassLoaderContext is a special shared library.
+I/libprocessgroup(  542): Successfully killed process cgroup uid 10088 pid 2295 in 1413ms
+W/Looper  (  542): Slow dispatch took 206ms android.fg h=android.os.Handler c=<recycled PooledLambda@1ee2f62> m=0
+I/libprocessgroup(  542): Successfully killed process cgroup uid 10110 pid 2393 in 127ms
+W/Looper  (  542): Slow dispatch took 105ms android.fg h=android.os.Handler c=<recycled PooledLambda@373f659> m=0
+D/NetworkSecurityConfig( 2766): No Network Security Config specified, using platform default
+I/ActivityManager(  542): Killing 2459:com.android.carrierconfig/u0a113 (adj 985): empty #17
+W/Looper  (  542): Drained
+D/NetworkSecurityConfig( 2766): No Network Security Config specified, using platform default
+I/Zygote  (  280): Process 2459 exited due to signal 9 (Killed)
+I/libprocessgroup(  542): Successfully killed process cgroup uid 10113 pid 2459 in 135ms
+I/AutoRevokePermissions(  844): Parsed teamfood setting value: null
+I/AutoRevokePermissions(  844): Parsed teamfood setting value: null
+I/AutoRevokePermissions(  844): scheduleAutoRevokePermissions with frequency 1296000000ms and threshold 7776000000ms
+I/AutoRevokePermissions(  844): user 0 is a profile owner. Running Auto Revoke.
+I/AutoRevokePermissions(  844): Parsed teamfood setting value: null
+I/VvmSimStateTracker( 1164): android.intent.action.BOOT_COMPLETED
+I/AutoRevokePermissions(  844): onStartJob
+I/AutoRevokePermissions(  844): Skipping auto revoke first run when scheduled by system
+I/system_server(  542): Background concurrent copying GC freed 143023(8094KB) AllocSpace objects, 80(5640KB) LOS objects, 49% free, 10MB/21MB, paused 9.119ms total 2.819s
+D/CompatibilityChangeReporter(  542): Compat change id reported: 135634846; UID 2000; state: DISABLED
+E/livelock(  456): sample 15.149s
+D/Zygote  (  280): Forked child process 2788
+W/m.android.shel( 2788): Unexpected CPU variant for X86 using defaults: x86_64
+W/ActivityManager(  542): Slow operation: 327ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  542): Slow operation: 328ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  542): Slow operation: 328ms so far, now at startProcess: building log message
+I/ActivityManager(  542): Start proc 2788:com.android.shell/2000 for broadcast {com.android.shell/com.android.shell.HeapDumpReceiver}
+W/ActivityManager(  542): Slow operation: 329ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  542): Slow operation: 329ms so far, now at startProcess: done updating pids map
+I/adbd    (  387): jdwp connection from 2788
+I/m.android.shel( 2788): The ClassLoaderContext is a special shared library.
+D/NetworkSecurityConfig( 2788): No Network Security Config specified, using platform default
+D/NetworkSecurityConfig( 2788): No Network Security Config specified, using platform default
+D/HeapDumpReceiver( 2788): onReceive(): Intent { act=android.intent.action.BOOT_COMPLETED flg=0x89000010 cmp=com.android.shell/.HeapDumpReceiver (has extras) }
+D/HeapDumpReceiver( 2788): Deleting from /data/user_de/0/com.android.shell/files/heapdumps
+I/ActivityManager(  542): Killing 1923:com.android.cellbroadcastreceiver/u0a64 (adj 985): empty #17
+I/m.android.phon( 1164): The ClassLoaderContext is a special shared library.
+I/Zygote  (  280): Process 1923 exited due to signal 9 (Killed)
+I/libprocessgroup(  542): Successfully killed process cgroup uid 10064 pid 1923 in 92ms
+D/NetworkSecurityConfig( 1164): No Network Security Config specified, using platform default
+W/nsconfig( 1164): com.android.phone: New config does not match the previously set config.
+D/CompatibilityChangeReporter(  542): Compat change id reported: 135634846; UID 10084; state: DISABLED
+D/CompatibilityChangeReporter(  542): Compat change id reported: 143937733; UID 10084; state: DISABLED
+D/Zygote  (  280): Forked child process 2810
+D/PackageManager(  542): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+D/PackageManager(  542): Clear ephemeral installer activity
+W/ActivityManager(  542): Slow operation: 232ms so far, now at startProcess: returned from zygote!
+W/ActivityManager(  542): Slow operation: 233ms so far, now at startProcess: done updating battery stats
+W/ActivityManager(  542): Slow operation: 233ms so far, now at startProcess: building log message
+I/ActivityManager(  542): Start proc 2810:com.android.traceur/u0a84 for broadcast {com.android.traceur/com.android.traceur.Receiver}
+W/ActivityManager(  542): Slow operation: 235ms so far, now at startProcess: starting to update pids map
+W/ActivityManager(  542): Slow operation: 236ms so far, now at startProcess: done updating pids map
+W/android.traceu( 2810): Unexpected CPU variant for X86 using defaults: x86_64
+I/adbd    (  387): jdwp connection from 2810
+D/ApplicationLoaders( 2810): Returning zygote-cached class loader: /system/framework/android.test.base.jar
+I/android.traceu( 2810): The ClassLoaderContext is a special shared library.
+D/NetworkSecurityConfig( 2810): No Network Security Config specified, using platform default
+D/PackageManager(  542): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+D/PackageManager(  542): Clear ephemeral installer activity
+D/PackageManager(  542): Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+D/PackageManager(  542): Clear ephemeral installer activity
+I/ActivityManager(  542): Finished processing BOOT_COMPLETED for u0
+I/ActivityManager(  542): Killing 2245:com.android.externalstorage/u0a68 (adj 985): empty #17
+D/NetworkSecurityConfig( 2810): No Network Security Config specified, using platform default
+I/Dialer  ( 2487): VvmTaskReceiver - task received
+I/Dialer  ( 2487): VvmTaskReceiver - TaskExecutor already running
+I/Dialer  ( 2487): Task.createTask - create task:com.android.voicemail.impl.ActivationTask
+I/Dialer  ( 2487): TaskQueue.add - duplicated task added
+I/Dialer  ( 2487): VvmTaskExecutor - com.android.voicemail.impl.ActivationTask@247a335 added
+V/AvrcpMediaPlayerList( 2268): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList( 2268): Name of package changed: com.android.stk
+V/AvrcpMediaPlayerList( 2268): mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+D/AvrcpMediaPlayerList( 2268): Name of package changed: com.android.traceur
+D/QSTileHost(  824): Recreating tiles
+W/Looper  (  542): Slow dispatch took 146ms main h=com.android.providers.settings.SettingsProvider$SettingsRegistry$MyHandler c=null m=1
+I/InputReader(  542): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+W/Looper  (  542): Slow delivery took 243ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@ac6a873 m=0
+I/Telecom (  542): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AHM
+I/RoleManagerService(  542): Granting default roles...
+W/Looper  (  542): Slow dispatch took 180ms android.fg h=android.os.Handler c=com.android.server.role.-$$Lambda$RoleManagerService$p0uu3WH3gz96-kAWnyu6IUHMtCg@133572e m=0
+I/InputReader(  542): Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+I/PermissionControllerServiceImpl(  844): Updating user sensitive for uid 1001
+I/Telecom (  542): DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AHQ
+I/PermissionControllerServiceImpl(  844): Updating user sensitive for uid 10084
+I/Zygote  (  280): Process 2245 exited due to signal 9 (Killed)
+W/Looper  (  542): Drained
+W/VoiceInteractionManager(  542): no available voice interaction services found for user 0
+I/libprocessgroup(  542): Successfully killed process cgroup uid 10068 pid 2245 in 576ms
+W/VoiceInteractionManager(  542): no available voice interaction services found for user 0
+W/Looper  (  542): Slow dispatch took 398ms android.fg h=android.os.Handler c=<recycled PooledLambda@373f659> m=0
+D/CarrierSvcBindHelper( 1164): No carrier app for: 0
+W/Looper  (  542): Slow delivery took 400ms android.fg h=android.os.Handler c=<recycled PooledLambda@1ee2f62> m=0
+W/Looper  (  542): Slow dispatch took 118ms android.fg h=android.os.Handler c=<recycled PooledLambda@1ee2f62> m=0
+W/Looper  (  542): Slow dispatch took 111ms android.fg h=android.os.Handler c=<recycled PooledLambda@98b4130> m=0
+W/Looper  (  542): Slow dispatch took 141ms android.fg h=android.os.Handler c=<recycled PooledLambda@4854405> m=0
+W/Looper  (  542): Slow dispatch took 206ms android.fg h=android.os.Handler c=<recycled PooledLambda@29890a5> m=0
+W/Looper  (  542): Slow dispatch took 106ms android.fg h=android.os.Handler c=<recycled PooledLambda@e12ebcf> m=0
+W/Looper  (  542): Slow dispatch took 113ms android.fg h=android.os.Handler c=<recycled PooledLambda@c215c31> m=0
+I/RoleManagerService(  542): Granting default roles...
+W/Looper  (  542): Slow dispatch took 104ms android.fg h=android.os.Handler c=com.android.server.role.-$$Lambda$RoleManagerService$p0uu3WH3gz96-kAWnyu6IUHMtCg@133572e m=0
+I/ActivityManager(  542): Killing 2538:com.android.quicksearchbox/u0a102 (adj 985): empty #17
+D/CarrierSvcBindHelper( 1164): No carrier app for: 0
+I/Zygote  (  280): Process 2538 exited due to signal 9 (Killed)
+I/libprocessgroup(  542): Successfully killed process cgroup uid 10102 pid 2538 in 186ms
+W/Looper  (  542): Slow dispatch took 315ms android.fg h=android.os.Handler c=<recycled PooledLambda@98b4130> m=0
+W/Looper  (  542): Slow dispatch took 121ms android.fg h=android.os.Handler c=<recycled PooledLambda@729c949> m=0
+W/Looper  (  542): Drained
+I/m.android.shel( 2788): WaitForGcToComplete blocked RunEmptyCheckpoint on ProfileSaver for 11.199ms
+I/system_server(  542): Background concurrent copying GC freed 58539(3355KB) AllocSpace objects, 55(3188KB) LOS objects, 49% free, 10018KB/19MB, paused 1.186ms total 460.424ms
