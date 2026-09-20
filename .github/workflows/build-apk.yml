@@ -86,42 +86,20 @@ jobs:
           org.gradle.jvmargs=-Xmx4g -Dfile.encoding=UTF-8
           EOF
 
-      - name: Restore persistent release signing key
+      - name: Restore repository release signing key
         shell: bash
-        env:
-          TSUYU_RELEASE_SIGNING_BUNDLE: ${{ secrets.TSUYU_RELEASE_SIGNING_BUNDLE }}
         run: |
           set -euo pipefail
-          if [ -z "$TSUYU_RELEASE_SIGNING_BUNDLE" ]; then
-            echo "::error::The persistent release signing secret TSUYU_RELEASE_SIGNING_BUNDLE is not configured."
-            exit 1
-          fi
-          export TSUYU_RELEASE_SIGNING_BUNDLE
-          python3 - <<'PY'
-          import base64
-          import json
-          import os
-          from pathlib import Path
-
-          bundle = json.loads(os.environ["TSUYU_RELEASE_SIGNING_BUNDLE"])
-          required = ("keystore", "storePassword", "keyAlias", "keyPassword")
-          if any(not str(bundle.get(key, "")) for key in required):
-              raise SystemExit("Signing bundle is incomplete")
-          signing = Path("yoru-android/owner-signing")
-          signing.mkdir(parents=True, exist_ok=True)
-          (signing / "yoru-release.p12").write_bytes(
-              base64.b64decode(bundle["keystore"], validate=True)
-          )
-          (signing / "signing.properties").write_text(
-              "storePassword=" + str(bundle["storePassword"]) + "\n"
-              "keyAlias=" + str(bundle["keyAlias"]) + "\n"
-              "keyPassword=" + str(bundle["keyPassword"]) + "\n",
-              encoding="utf-8",
-          )
-          PY
+          test -s owner-signing/yoru-release.p12
+          test -s owner-signing/signing.properties
+          mkdir -p yoru-android/owner-signing
+          cp owner-signing/yoru-release.p12 yoru-android/owner-signing/yoru-release.p12
+          cp owner-signing/signing.properties yoru-android/owner-signing/signing.properties
           chmod 600 yoru-android/owner-signing/yoru-release.p12 yoru-android/owner-signing/signing.properties
-          TSUYU_SIGNING_PASSWORD="$(sed -n 's/^storePassword=//p' yoru-android/owner-signing/signing.properties)"
-          TSUYU_SIGNING_ALIAS="$(sed -n 's/^keyAlias=//p' yoru-android/owner-signing/signing.properties)"
+          TSUYU_SIGNING_PASSWORD="$(sed -n 's/^storePassword=//p' owner-signing/signing.properties)"
+          TSUYU_SIGNING_ALIAS="$(sed -n 's/^keyAlias=//p' owner-signing/signing.properties)"
+          test -n "$TSUYU_SIGNING_PASSWORD"
+          test -n "$TSUYU_SIGNING_ALIAS"
           keytool -list -keystore yoru-android/owner-signing/yoru-release.p12 \
             -storetype PKCS12 -storepass "$TSUYU_SIGNING_PASSWORD" \
             -alias "$TSUYU_SIGNING_ALIAS" >/dev/null
