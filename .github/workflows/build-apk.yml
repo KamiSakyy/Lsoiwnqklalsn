@@ -106,7 +106,19 @@ jobs:
 
       - name: Assemble Tsuyu release APK
         working-directory: yoru-android
-        run: gradle --no-daemon --stacktrace :app:assembleTsuyuRelease
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle --no-daemon --stacktrace --console=plain :app:assembleTsuyuRelease 2>&1 | tee ../gradle-build.log
+
+      - name: Upload build diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tsuyu-build-diagnostics
+          path: gradle-build.log
+          if-no-files-found: warn
+          retention-days: 3
 
       - name: Copy and verify release APK
         shell: bash
