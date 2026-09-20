@@ -16,4 +16,11 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v4
       - name: Audit four real anime through source APIs
-        run: python3 scripts/source_audit.py
+        run: python3 scripts/source_audit.py | tee source-audit.log
+      - name: Upload audit log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-playback-audit
+          path: source-audit.log
+          if-no-files-found: error
