@@ -90,6 +90,8 @@ def audit_yummy(row):
         if item.get("iframe_url"):
             urls.append(item["iframe_url"])
     first_url = urls[0] if urls else ""
+    if first_url.startswith("//"):
+        first_url = "https:" + first_url
     stream_status = None
     stream_len = None
     stream_type = ""
