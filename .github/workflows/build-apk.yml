@@ -124,9 +124,12 @@ jobs:
           emulator-boot-timeout: 600
           emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect
           disable-animations: true
+          working-directory: .
           script: |
             set -eu
-            SMOKE_LOG="${GITHUB_WORKSPACE:-$(pwd)}/runtime-smoke.log"
+            ROOT="$(git rev-parse --show-toplevel)"
+            cd "$ROOT"
+            SMOKE_LOG="$ROOT/runtime-smoke.log"
             echo "smoke_pwd=$(pwd) smoke_log=$SMOKE_LOG" > "$SMOKE_LOG"
             APK="yoru-android/app/build/outputs/apk/tsuyu/release/app-tsuyu-release.apk"
             test -s "$APK"
@@ -192,10 +195,21 @@ jobs:
         shell: bash
         run: |
           set -eu
-          LOG="${GITHUB_WORKSPACE:-$(pwd)}/runtime-smoke.log"
-          echo "diagnostic_pwd=$(pwd) log=$LOG"
-          ls -l "$LOG" 2>/dev/null || true
-          if [ ! -s "$LOG" ]; then exit 0; fi
+          ROOT="$(git rev-parse --show-toplevel)"
+          LOG="$ROOT/runtime-smoke.log"
+          DEBUG="$ROOT/runtime-persist-debug.log"
+          {
+            echo "diagnostic_pwd=$(pwd) root=$ROOT log=$LOG"
+            ls -la "$ROOT" || true
+            find "$ROOT" -type f -name 'runtime-smoke.log' -o -name 'runtime-*.log' 2>/dev/null || true
+            find /home/runner/work -type f -name 'runtime-smoke.log' 2>/dev/null || true
+          } > "$DEBUG"
+          if [ ! -s "$LOG" ]; then
+            git add "$DEBUG"
+            git commit -m "Record Android runtime diagnostic location [skip ci]" || true
+            git push origin "HEAD:${GITHUB_REF_NAME}" || true
+            exit 0
+          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$LOG"
