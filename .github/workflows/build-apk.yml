@@ -126,11 +126,13 @@ jobs:
           disable-animations: true
           script: |
             set -eu
+            SMOKE_LOG="${GITHUB_WORKSPACE}/runtime-smoke.log"
+            echo "smoke_pwd=$(pwd) smoke_log=$SMOKE_LOG" > "$SMOKE_LOG"
             APK="yoru-android/app/build/outputs/apk/tsuyu/release/app-tsuyu-release.apk"
             test -s "$APK"
             adb wait-for-device
             adb install -r "$APK"
-            : > runtime-smoke.log
+            : > "$SMOKE_LOG"
             cat > /tmp/smoke.py <<'PY'
             import json
             titles = [
@@ -145,12 +147,12 @@ jobs:
               print(key + "=" + json.dumps(value, ensure_ascii=False, separators=(",", ":")))
             PY
             python3 /tmp/smoke.py | while IFS='=' read -r key json; do
-              echo "=== runtime $key ===" | tee -a runtime-smoke.log
+              echo "=== runtime $key ===" | tee -a "$SMOKE_LOG"
               adb shell am force-stop com.tsuyu.line
               adb logcat -c
-              if ! adb shell am start -n com.tsuyu.line/.PlayerActivity --es anime "$json" --ed episode 1 2>&1 | tee -a runtime-smoke.log; then
-                echo "AM_START_FAILURE_$key" | tee -a runtime-smoke.log >&2
-                adb logcat -d -v brief | tail -n 400 | tee -a runtime-smoke.log >&2 || true
+              if ! adb shell am start -n com.tsuyu.line/.PlayerActivity --es anime "$json" --ed episode 1 2>&1 | tee -a "$SMOKE_LOG"; then
+                echo "AM_START_FAILURE_$key" | tee -a "$SMOKE_LOG" >&2
+                adb logcat -d -v brief | tail -n 400 | tee -a "$SMOKE_LOG" >&2 || true
                 exit 1
               fi
               pass=0
@@ -158,20 +160,20 @@ jobs:
                 sleep 1
                 runtime_log="$(adb logcat -d -s TsuyuRuntime:I '*:S' 2>/dev/null || true)"
                 printf '%s\n' "$runtime_log" > /tmp/runtime-$key.log
-                cat /tmp/runtime-$key.log >> runtime-smoke.log
+                cat /tmp/runtime-$key.log >> "$SMOKE_LOG"
                 if echo "$runtime_log" | grep -Eq 'PLAYBACK_READY .*episodes=[1-9][0-9]* .*voices_ep1=[1-9][0-9]*'; then
                   if echo "$runtime_log" | grep -q 'MEDIA_READY'; then pass=1; break; fi
                 fi
                 if adb shell dumpsys activity activities 2>/dev/null | grep -q 'com.tsuyu.line/.PlayerActivity'; then :; else
-                  echo "Activity exited before runtime-ready for $key" | tee -a runtime-smoke.log
+                  echo "Activity exited before runtime-ready for $key" | tee -a "$SMOKE_LOG"
                 fi
               done
               if [ "$pass" -ne 1 ]; then
-                echo "RUNTIME_FAILURE_$key" | tee -a runtime-smoke.log >&2
-                adb logcat -d -v brief | tail -n 400 | tee -a runtime-smoke.log >&2 || true
+                echo "RUNTIME_FAILURE_$key" | tee -a "$SMOKE_LOG" >&2
+                adb logcat -d -v brief | tail -n 400 | tee -a "$SMOKE_LOG" >&2 || true
                 exit 1
               fi
-              echo "RUNTIME_PASS_$key" | tee -a runtime-smoke.log
+              echo "RUNTIME_PASS_$key" | tee -a "$SMOKE_LOG"
             done
 
       - name: Upload build diagnostics
@@ -190,12 +192,19 @@ jobs:
         shell: bash
         run: |
           set -eu
-          if [ ! -s runtime-smoke.log ]; then exit 0; fi
+          LOG="${GITHUB_WORKSPACE}/runtime-smoke.log"
+          echo "diagnostic_pwd=$(pwd) log=$LOG"
+          ls -l "$LOG" 2>/dev/null || true
+          if [ ! -s "$LOG" ]; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add runtime-smoke.log
+          git add "$LOG"
           git commit -m "Persist Android runtime smoke diagnostics [skip ci]" || exit 0
-          git push origin "HEAD:${GITHUB_REF_NAME}" || true
+          git push origin "HEAD:${GITHUB_REF_NAME}" || {
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase "origin/${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          }
 
       - name: Copy and verify release APK
         shell: bash
