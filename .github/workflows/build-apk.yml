@@ -198,6 +198,8 @@ jobs:
           ROOT="$(git rev-parse --show-toplevel)"
           LOG="$ROOT/runtime-smoke.log"
           DEBUG="$ROOT/runtime-persist-debug.log"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           {
             echo "diagnostic_pwd=$(pwd) root=$ROOT log=$LOG"
             ls -la "$ROOT" || true
@@ -210,8 +212,6 @@ jobs:
             git push origin "HEAD:${GITHUB_REF_NAME}" || true
             exit 0
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$LOG"
           git commit -m "Persist Android runtime smoke diagnostics [skip ci]" || exit 0
           git push origin "HEAD:${GITHUB_REF_NAME}" || {
