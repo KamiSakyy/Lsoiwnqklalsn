@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
+import base64
 import json
 import re
 import sys
 import time
-from urllib.parse import urlencode, quote
+from urllib.parse import urlencode, quote, urljoin, urlparse
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 
@@ -107,6 +108,148 @@ def audit_yummy(row):
     }
 
 
+def _java_caesar(value):
+    out = []
+    for ch in value:
+        if "a" <= ch <= "z":
+            out.append(chr((ord(ch) - ord("a") + 18) % 26 + ord("a")))
+        elif "A" <= ch <= "Z":
+            out.append(chr((ord(ch) - ord("A") + 18) % 26 + ord("A")))
+        else:
+            out.append(ch)
+    return "".join(out)
+
+
+def _kodik_decode(value):
+    value = str(value or "")
+    if "//" in value or value.startswith("http"):
+        return value.replace("\\/", "/")
+    shifted = _java_caesar(value)
+    shifted += "=" * ((4 - len(shifted) % 4) % 4)
+    try:
+        return base64.b64decode(shifted).decode("utf-8", "replace").replace("\\/", "/")
+    except Exception:
+        return ""
+
+
+def _cookies(headers):
+    vals = headers.get_all("Set-Cookie") if headers else []
+    return "; ".join(v.split(";", 1)[0] for v in (vals or []))
+
+
+def resolve_kodik(url):
+    result = {"kind": "kodik", "url": url}
+    st, headers, body, elapsed = fetch(url, headers={"Referer": "https://yani.tv/"}, timeout=20)
+    html = body.decode("utf-8", "replace").replace("\n", "").replace("\r", "")
+    result.update({"page_status": st, "page_ms": round(elapsed * 1000), "page_bytes": len(body)})
+    params_text = ""
+    for pattern in (r"\burlParams\s*=\s*'([^']+)'", r'\burlParams\s*=\s*"([^"]+)"'):
+        m = re.search(pattern, html, re.I | re.S)
+        if m:
+            params_text = m.group(1)
+            break
+    payload = {}
+    if params_text:
+        try:
+            payload.update(json.loads(params_text.replace("&quot;", '"').replace("\\/", "/")))
+        except Exception as e:
+            result["params_error"] = str(e)
+    if not payload:
+        patterns = {
+            "d": r'var\s+domain\s*=\s*["\'](.+?)["\']',
+            "d_sign": r'var\s+d_sign\s*=\s*["\'](.+?)["\']',
+            "pd": r'var\s+pd\s*=\s*["\'](.+?)["\']',
+            "pd_sign": r'var\s+pd_sign\s*=\s*["\'](.+?)["\']',
+            "ref": r'var\s+ref\s*=\s*["\'](.+?)["\']',
+            "ref_sign": r'var\s+ref_sign\s*=\s*["\'](.+?)["\']',
+        }
+        for key, pattern in patterns.items():
+            m = re.search(pattern, html, re.I | re.S)
+            payload[key] = m.group(1) if m else ""
+    def find(pattern):
+        m = re.search(pattern, html, re.I | re.S)
+        return m.group(1) if m else ""
+    payload["type"] = find(r'(?:videoInfo|vInfo)\.type\s*\+?=\s*["\'](.+?)["\']') or find(r'["\']type["\']\s*:\s*["\'](.+?)["\']')
+    payload["hash"] = find(r'(?:videoInfo|vInfo)\.hash\s*\+?=\s*["\'](.+?)["\']') or find(r'["\']hash["\']\s*:\s*["\'](.+?)["\']')
+    payload["id"] = find(r'(?:videoInfo|vInfo)\.id\s*\+?=\s*["\'](.+?)["\']') or find(r'["\']id["\']\s*:\s*["\'](.+?)["\']') or find(r'var\s+videoId\s*=\s*["\'](\d+)["\']')
+    result["payload_keys"] = {k: bool(str(v)) for k, v in payload.items()}
+    parsed = urlparse(url)
+    endpoint = parsed.scheme + "://" + parsed.netloc + "/ftor"
+    sm = re.search(r'''src=["']((?://[^"']+)?/assets/js/app\.player_single[^"']+)["']''', html, re.I)
+    if not sm:
+        sm = re.search(r'''src=["']([^"']*app\.player_single[^"']+)["']''', html, re.I)
+    if sm:
+        script_url = urljoin(url, sm.group(1))
+        ss, sh, sb, se = fetch(script_url, headers={"Referer": url}, timeout=20)
+        decoded_paths = []
+        script = sb.decode("utf-8", "replace")
+        for b64 in re.findall(r'atob\("([A-Za-z0-9+/=]+)"\)', script):
+            try:
+                decoded = base64.b64decode(b64).decode("utf-8", "replace")
+                if decoded.startswith("/") and not decoded.startswith("//") and len(decoded) <= 16:
+                    decoded_paths.append(decoded)
+            except Exception:
+                pass
+        if decoded_paths:
+            endpoint = urlparse(script_url).scheme + "://" + urlparse(script_url).netloc + decoded_paths[0]
+        result["script"] = {"status": ss, "bytes": len(sb), "endpoint_path": decoded_paths[:2]}
+    form = {key: str(payload.get(key, "")) for key in ("d", "d_sign", "pd", "pd_sign", "ref", "ref_sign", "type", "hash", "id")}
+    form.update({"bad_user": "true", "cdn_is_working": "true", "info": "{}"})
+    post_headers = {"Referer": url, "Origin": parsed.scheme + "://" + parsed.netloc,
+                    "Accept": "application/json, text/javascript, */*; q=0.01", "X-Requested-With": "XMLHttpRequest",
+                    "Cookie": _cookies(headers)}
+    post_data = urlencode(form).encode()
+    ps, ph, pb, pe = fetch(endpoint, post_data, post_headers, 20)
+    root = None
+    try:
+        root = json.loads(pb.decode("utf-8", "replace"))
+    except Exception as e:
+        result["post_json_error"] = str(e)
+    links = root.get("links") if isinstance(root, dict) else None
+    resolved = {}
+    if isinstance(links, dict):
+        for key, rows in links.items():
+            if not isinstance(rows, list) or not rows:
+                continue
+            row = rows[0] if isinstance(rows[0], dict) else {}
+            decoded = _kodik_decode(row.get("src", ""))
+            if decoded:
+                resolved[str(key)] = decoded
+    result.update({"endpoint": endpoint, "post_status": ps, "post_ms": round(pe * 1000), "post_bytes": len(pb),
+                   "link_keys": sorted(links.keys()) if isinstance(links, dict) else [],
+                   "resolved": {k: v[:260] for k, v in resolved.items()}})
+    if resolved:
+        key, stream = next(iter(resolved.items()))
+        ss, sh, sb, se = fetch(stream, headers={"Referer": url}, timeout=20)
+        result["stream_probe"] = {"quality": key, "status": ss, "bytes": len(sb), "type": sh.get_content_type() if sh else ""}
+    return result
+
+
+def resolve_aksor(url):
+    parsed = urlparse(url)
+    origin = parsed.scheme + "://" + parsed.netloc
+    ident = parsed.path.rstrip("/").split("/")[-1]
+    api_url = origin + "/api/video/" + quote(ident, safe="")
+    st, headers, body, elapsed = fetch(api_url, headers={"Referer": url, "Origin": origin}, timeout=20)
+    try:
+        root = json.loads(body.decode("utf-8", "replace"))
+    except Exception:
+        root = None
+    result = {"kind": "aksor", "url": url, "api": api_url, "status": st, "bytes": len(body), "ms": round(elapsed * 1000)}
+    if isinstance(root, dict):
+        qualities = root.get("qualities")
+        sources = root.get("sources")
+        result["quality_keys"] = sorted(qualities.keys()) if isinstance(qualities, dict) else []
+        result["source_count"] = len(sources) if isinstance(sources, list) else 0
+        urls = list(qualities.values()) if isinstance(qualities, dict) else []
+        if not urls and isinstance(sources, list):
+            urls = [r.get("url", r.get("src", "")) for r in sources if isinstance(r, dict)]
+        if urls:
+            stream = urls[0]
+            ss, sh, sb, se = fetch(stream, headers={"Referer": url}, timeout=20)
+            result["stream_probe"] = {"url": str(stream)[:260], "status": ss, "bytes": len(sb), "type": sh.get_content_type() if sh else ""}
+    return result
+
 def main():
     titles = [
         "О моём перерождении в слизь 4",
@@ -138,6 +281,11 @@ def main():
         yrow = yrows[0] if yrows else (candidate if candidate.get("anime_id") else None)
         result = audit_yummy(yrow) if yrow else {"error": "no Yummy match"}
         print("YUMMY_PLAYBACK", json.dumps(result, ensure_ascii=False), flush=True)
+        first_url = result.get("first_iframe", "")
+        if first_url.startswith("https://kodikplayer.com/"):
+            print("RESOLVER", json.dumps(resolve_kodik(first_url), ensure_ascii=False), flush=True)
+        elif "aksor" in first_url:
+            print("RESOLVER", json.dumps(resolve_aksor(first_url), ensure_ascii=False), flush=True)
         good = result.get("videos_status") == 200 and result.get("video_rows", 0) > 0 and result.get("first_iframe_status") in (200, 206)
         print("RESULT", "PASS" if good else "FAIL", flush=True)
         all_ok = all_ok and good
